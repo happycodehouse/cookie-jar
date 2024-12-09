@@ -1,4 +1,9 @@
-/* swiper css */
+/* Font CDN */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://api.fontshare.com/v2/css?f[]=red-hat-display@300,400,500,600,700,800,900&display=swap");
+@import url("https://api.fontshare.com/v2/css?f[]=array@401,400,600,601,700,701&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+/* Swiper CSS */
 @import url("https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.css");
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -72,12 +77,93 @@ a {
   background-color: transparent;
 }
 
-/* font cdn from fontshare.com */
+/* PIXEL TO VW */
 * {
   box-sizing: border-box;
+  font-family: "Poppins", sans-serif !important;
+  color: #0A0A0A;
 }
 
-/* pages */
+body {
+  background-color: #FAFAFA;
+}
+
+/* Layout */
+.rolling_banner {
+  overflow-x: hidden;
+  position: absolute;
+  left: 0;
+  bottom: max(13.2px, 1.3020833333vw);
+  display: flex;
+  width: 100%;
+}
+.rolling_banner .original {
+  animation: infiniteRolling01 100s linear infinite;
+}
+.rolling_banner .cloned {
+  animation: infiniteRolling02 100s linear infinite;
+}
+
+@keyframes infiniteRolling01 {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-100%);
+  }
+  50.01% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes infiniteRolling02 {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-200%);
+  }
+}
+.knitting_wrap {
+  display: flex;
+}
+
+.knitting {
+  width: fit-content;
+  border: 4px solid #555555;
+  border-right: 2px solid #555555;
+}
+.knitting:last-child {
+  border-right: max(2.64px, 0.2604166667vw) solid #555555;
+}
+.knitting .row {
+  display: flex;
+}
+.knitting .row.whole_white > div {
+  background: #FAFAFA;
+  border: 0.5px solid #555555;
+}
+.knitting .row.whole_black > div {
+  background: #555555;
+  border: 0.5px solid #FAFAFA;
+}
+.knitting .row > div {
+  width: 2px;
+  height: 2px;
+  border: 0.5px solid #555555;
+}
+.knitting .row > div.white {
+  background-color: #FAFAFA;
+  border: 0.5px solid #555555;
+}
+.knitting .row > div.black {
+  background-color: #555555;
+  border: 0.5px solid #FAFAFA;
+}
+
+/* Pages */
 .main {
   background-color: #fafafa;
 }

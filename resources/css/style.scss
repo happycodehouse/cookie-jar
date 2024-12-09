@@ -8,7 +8,11 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.css");
 
 @import "./reset";
+@import "./mixin";
 @import "./common";
 
-/* pages */
+/* Layout */
+@import "./layout/banner";
+
+/* Pages */
 @import "./pages/main";

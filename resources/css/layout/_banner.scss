@@ -1,0 +1,91 @@
+.rolling_banner {
+    overflow-x: hidden;
+    position: absolute;
+    left: 0;
+    bottom: to_vw(20, $baseP);
+    display: flex;
+    width: 100%;
+
+    .original {
+        animation: infiniteRolling01 100s linear infinite;
+    }
+
+    .cloned {
+        animation: infiniteRolling02 100s linear infinite;
+    }
+}
+
+@keyframes infiniteRolling01 {
+    0% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(-100%);
+    }
+
+    50.01% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes infiniteRolling02 {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-200%);
+    }
+}
+
+.knitting_wrap {
+    display: flex;
+}
+
+.knitting {
+    width: fit-content;
+    border: to_vw(4, $baseM) solid $mainColor;
+    border-right: to_vw(2, $baseM) solid $mainColor;
+
+    &:last-child {
+        border-right: to_vw(4, $baseP) solid $mainColor;
+    }
+
+    .row {
+        display: flex;
+
+        &.whole_white {
+            > div {
+                background: $bodyBgColor;
+                border: to_vw(0.5, $baseM) solid $mainColor;
+            }
+        }
+
+        &.whole_black {
+            > div {
+                background: $mainColor;
+                border: to_vw(0.5, $baseM) solid $bodyBgColor;
+            }
+        }
+
+        > div {
+            width: to_vw(2, $baseM);
+            height: to_vw(2, $baseM);
+            border: to_vw(0.5, $baseM) solid $mainColor;
+
+            &.white {
+                background-color: $bodyBgColor;
+                border: to_vw(0.5, $baseM) solid $mainColor;
+            }
+
+            &.black {
+                background-color: $mainColor;
+                border: to_vw(0.5, $baseM) solid $bodyBgColor;
+            }
+        }
+    }}
