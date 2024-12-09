@@ -1,10 +1,9 @@
 @charset "UTF-8";
 @use "sass:math";
 
-/* font cdn from fontshare.com */
-
-
 * {
     box-sizing: border-box;
+    font-family: $Poppins;
+    color: $textColor;
 }
 

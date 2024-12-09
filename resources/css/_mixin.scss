@@ -1,0 +1,154 @@
+@charset "UTF-8";
+@use "sass:math";
+
+// FONT
+$Roboto: "Roboto", sans-serif !important;
+$RedHatDisplay: 'Red Hat Display', sans-serif !important;
+$Array: 'Array', sans-serif !important;
+$Poppins: 'Poppins', sans-serif !important;
+
+// COLOR
+$bodyBgColor: #FAFAFA;
+$blueColor: #8FC1D4;
+$cookieColor: #BE8C63;
+$brownColor: #804D3B;
+$textColor: #0A0A0A;
+
+$gray900: #1B1D1F;
+$gray800: #26282B;
+$gray600: #454C53;
+$gray500: #72787F;
+$gray400: #9EA4AA;
+$gray200: #C9CDD2;
+$gray100: #E8EBED;
+$gray50: #F7F8F9;
+
+// BASE
+$baseP: 1536;
+$baseT: 768;
+$baseM: 375;
+
+$fontSize-default: 16;
+
+$gridCount: 12;
+$gutter: 30;
+
+$breakpoints: (
+        mobile: 768px,
+        tablet: 1024px,
+);
+
+@mixin media($from: false, $until: false, $and: false, $or: false, $etc: false, $media-type: all) {
+    /// ❓ 선택값
+    /// $from, $until : $breakpoints or number
+    /// $and : 조건 연산자
+    /// 예) @include media($from: "sm", $until: 768px, $and:"orientation: landscape")
+    /// media(false, tablet, $etc:", (max-width: 1366px) and (pointer: coarse)")
+    ///
+    $min-width: 0;
+    $max-width: 0;
+    $query: "";
+
+    @if $from {
+        @if type-of($from) == number {
+            $min-width: $from;
+        } @else {
+            $min-width: map-get($breakpoints, $from);
+        }
+    }
+    @if $until {
+        @if type-of($until) == number {
+            $max-width: $until - 1px;
+        } @else {
+            $max-width: map-get($breakpoints, $until) - 1px;
+        }
+    }
+
+    @if $min-width != 0 {
+        $query: "#{$query} and (min-width: #{$min-width})";
+    }
+    @if $max-width != 0 {
+        $query: "#{$query} and (max-width: #{$max-width})";
+    }
+    @if $and {
+        $query: "#{$query} and (#{$and})";
+    }
+    @if $or {
+        $query: "#{$query} or (#{$or})";
+    }
+    @if $etc {
+        $query: "#{$query} #{$etc}";
+    }
+
+    @if ($media-type == "all" and $query != "") {
+        $media-type: "";
+        $query: str-slice(unquote($query), 6);
+    }
+
+    @media #{$media-type + $query} {
+        @content;
+    }
+}
+
+@mixin fontSize($font-size: null, $base-size: $baseP, $letter-spacing: null, $line-height: null) {
+    /// ❓ 선택값
+    /// $font-size, $letter-spacing, $line-height : photoshop value
+    /// $margin-bottom : marginBlock * value
+    //font-size: $font-size * 1px;
+    @if font-size==null {
+        font-size: 1rem;
+    } @else {
+        font-size: to_vw($font-size, $base-size);
+    }
+
+    @if $letter-spacing ==null {
+        letter-spacing: 0;
+    } @else {
+        letter-spacing: #{$letter-spacing / 1000}em;
+    }
+
+    @if $line-height ==null {
+        line-height: 1;
+    } @else {
+        line-height: $line-height / $font-size;
+    }
+}
+
+@mixin wordBreak {
+    word-break: keep-all;
+    word-wrap: break-word;
+}
+
+/* PIXEL TO VW */
+@function to_vw($px-size, $base: 1536) {
+    $minus: 0;
+
+    @if $px-size < 0 {
+        $px-size: $px-size * -1;
+        $minus: 1;
+    }
+
+    $px-size: $px-size * 1px;
+    $baseD: $base;
+    $base: $base * 1px;
+    $resultVw: math.div($px-size, $base) * 100vw;
+    //$resultValue: calc(math.floor($resultVw * 1000) / 1000);
+    $min: $px-size * 0.66;
+    $max: $px-size * 1;
+
+    @if $baseT >=$baseD {
+        @if $minus >0 {
+            // @return calc(min(#{$resultVw}, #{$max}) * -1);
+            @return -#{$max};
+        } @else {
+            @return #{$max};
+        }
+    } @else {
+        @if $minus >0 {
+            @return calc(max(#{$min}, #{$resultVw}) * -1);
+        } @else {
+            @return max(#{$min}, #{$resultVw});
+        }
+    }
+}
+
