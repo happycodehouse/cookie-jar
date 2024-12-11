@@ -12,9 +12,9 @@
         pointer-events: none;
     }
 
-    .wrapper_3d {
+    .wrapper-3d {
         position: relative;
-        perspective: to_vw(125);
+        perspective: to-vw(250);
         transform-style: preserve-3d;
     }
 
@@ -25,7 +25,25 @@
         will-change: transform;
     }
 
-    .fold_before {
+    .fold-size-fix {
+        transform-origin: center center;
+        width: 100%;
+        height: 100%;
+    }
+
+    .fold-scroller {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+    }
+
+    .fold-content {
+        pointer-events: all;
+        width: 100%;
+    }
+
+    .fold-before {
         position: absolute;
         top: 0;
         right: 0;
@@ -33,27 +51,41 @@
         left: 0;
         transform-origin: bottom center;
 
-        .fold_size_fixed {
+        .fold-size-fix {
             transform-origin: bottom center;
         }
 
-        .fold_scroll_area {
+        .fold-scroller {
             transform: translateY(100%);
         }
     }
 
-    .fold_after {
+    .fold-center {
+        transform-origin: center center;
+    }
+
+    .fold-after {
         position: absolute;
         top: 0;
         right: 0;
         bottom: 0;
         left: 0;
         transform-origin: top center;
+
+        .fold-size-fix {
+            transform-origin: top center;
+        }
+
+        .fold-scroller {
+            transform: translateY(-100%);
+        }
     }
 
-    .text_item {
+    .text-item {
+        backface-visibility: hidden;
+
         p {
-            font-size: to_vw(96);
+            font-size: to-vw(100);
             font-weight: 900;
         }
     }

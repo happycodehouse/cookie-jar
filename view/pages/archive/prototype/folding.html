@@ -15,12 +15,12 @@
     </ul>
 
     <div class="screen" id="fold-effect">
-        <div class="wrapper_3d">
-            <div class="fold fold_before">
-                <div class="fold_size_fixed">
-                    <div class="fold_scroll_area">
-                        <div class="fold_content text_wrap">
-                            <div class="text_item">
+        <div class="wrapper-3d">
+            <div class="fold fold-before">
+                <div class="fold-size-fix">
+                    <div class="fold-scroller">
+                        <div class="fold-content text-wrap">
+                            <div class="text-item">
                                 <p>
                                     I went to the electronic store and got a humidifier for my office. <br>
                                     I usually decide pretty quickly when I'm shopping; oh my gosh, there were so many
@@ -82,11 +82,11 @@
                     </div>
                 </div>
             </div>
-            <div class="fold fold_center">
-                <div class="fold_size_fixed">
-                    <div class="fold_scroll_area">
-                        <div class="fold_content text_wrap">
-                            <div class="text_item">
+            <div class="fold fold-center">
+                <div class="fold-size-fix">
+                    <div class="fold-scroller">
+                        <div class="fold-content text-wrap">
+                            <div class="text-item">
                                 <p>
                                     I went to the electronic store and got a humidifier for my office. <br>
                                     I usually decide pretty quickly when I'm shopping; oh my gosh, there were so many
@@ -148,11 +148,11 @@
                     </div>
                 </div>
             </div>
-            <div class="fold fold_after">
-                <div class="fold_size_fixed">
-                    <div class="fold_scroll_area">
-                        <div class="fold_content text_wrap">
-                            <div class="text_item">
+            <div class="fold fold-after">
+                <div class="fold-size-fix">
+                    <div class="fold-scroller">
+                        <div class="fold-content text-wrap">
+                            <div class="text-item">
                                 <p>
                                     I went to the electronic store and got a humidifier for my office. <br>
                                     I usually decide pretty quickly when I'm shopping; oh my gosh, there were so many
@@ -217,9 +217,14 @@
 </div>
 
 <script>
-    const foldEffect = document.getElementById("fold-effect");
+    (function() {
+        const wrapper = document.getElementById("fold-effect");
 
+        const folds = Array.from(document.getElementsByClassName("fold"));
 
+        const baseContent = document.querySelector(".text-item");
+
+    })();
 </script>
 
 </body>

@@ -174,9 +174,9 @@ body {
   height: 100vh;
   pointer-events: none;
 }
-#fold-effect .wrapper_3d {
+#fold-effect .wrapper-3d {
   position: relative;
-  perspective: max(82.5px, 8.1380208333vw);
+  perspective: max(165px, 16.2760416667vw);
   transform-style: preserve-3d;
 }
 #fold-effect .fold {
@@ -185,7 +185,22 @@ body {
   height: 80vh;
   will-change: transform;
 }
-#fold-effect .fold_before {
+#fold-effect .fold-size-fix {
+  transform-origin: center center;
+  width: 100%;
+  height: 100%;
+}
+#fold-effect .fold-scroller {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+#fold-effect .fold-content {
+  pointer-events: all;
+  width: 100%;
+}
+#fold-effect .fold-before {
   position: absolute;
   top: 0;
   right: 0;
@@ -193,13 +208,16 @@ body {
   left: 0;
   transform-origin: bottom center;
 }
-#fold-effect .fold_before .fold_size_fixed {
+#fold-effect .fold-before .fold-size-fix {
   transform-origin: bottom center;
 }
-#fold-effect .fold_before .fold_scroll_area {
+#fold-effect .fold-before .fold-scroller {
   transform: translateY(100%);
 }
-#fold-effect .fold_after {
+#fold-effect .fold-center {
+  transform-origin: center center;
+}
+#fold-effect .fold-after {
   position: absolute;
   top: 0;
   right: 0;
@@ -207,7 +225,16 @@ body {
   left: 0;
   transform-origin: top center;
 }
-#fold-effect .text_item p {
-  font-size: max(63.36px, 6.25vw);
+#fold-effect .fold-after .fold-size-fix {
+  transform-origin: top center;
+}
+#fold-effect .fold-after .fold-scroller {
+  transform: translateY(-100%);
+}
+#fold-effect .text-item {
+  backface-visibility: hidden;
+}
+#fold-effect .text-item p {
+  font-size: max(66px, 6.5104166667vw);
   font-weight: 900;
 }
