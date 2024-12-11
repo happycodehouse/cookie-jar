@@ -1,0 +1,60 @@
+
+#fold-effect {
+    &.screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100vh;
+        pointer-events: none;
+    }
+
+    .wrapper_3d {
+        position: relative;
+        perspective: to_vw(125);
+        transform-style: preserve-3d;
+    }
+
+    .fold {
+        overflow: hidden;
+        width: 100vw;
+        height: 80vh;
+        will-change: transform;
+    }
+
+    .fold_before {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        transform-origin: bottom center;
+
+        .fold_size_fixed {
+            transform-origin: bottom center;
+        }
+
+        .fold_scroll_area {
+            transform: translateY(100%);
+        }
+    }
+
+    .fold_after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        transform-origin: top center;
+    }
+
+    .text_item {
+        p {
+            font-size: to_vw(96);
+            font-weight: 900;
+        }
+    }
+}
