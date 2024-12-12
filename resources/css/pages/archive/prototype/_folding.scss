@@ -1,6 +1,10 @@
 
-#fold-effect {
-    &.screen {
+.folding {
+    #base-content {
+        display: none;
+    }
+
+    .screen {
         position: fixed;
         top: 0;
         left: 0;
@@ -21,7 +25,7 @@
     .fold {
         overflow: hidden;
         width: 100vw;
-        height: 80vh;
+        height: 90vh;
         will-change: transform;
     }
 
@@ -50,6 +54,7 @@
         bottom: 0;
         left: 0;
         transform-origin: bottom center;
+        transform: translateZ(0px) translate3d(0, -90vh, 0) rotateX(-120deg) scale3d(1, 1.002004008016032, 1);
 
         .fold-size-fix {
             transform-origin: bottom center;
@@ -62,6 +67,7 @@
 
     .fold-center {
         transform-origin: center center;
+        transform: translateZ(0px) translate3d(0, 0, 0) rotateX(0) scale3d(1, 1.002004008016032, 1);
     }
 
     .fold-after {
@@ -71,6 +77,7 @@
         bottom: 0;
         left: 0;
         transform-origin: top center;
+        transform: translateZ(0px) translate3d(0, 90vh, 0) rotateX(120deg) scale3d(1, 1.002004008016032, 1);
 
         .fold-size-fix {
             transform-origin: top center;
@@ -85,7 +92,7 @@
         backface-visibility: hidden;
 
         p {
-            font-size: to-vw(100);
+            font-size: to-vw(48);
             font-weight: 900;
         }
     }
