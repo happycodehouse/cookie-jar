@@ -132,41 +132,86 @@ body {
 
 .knitting {
   width: fit-content;
-  border: 4px solid #555555;
-  border-right: 2px solid #555555;
+  border: 4px solid #0A0A0A;
+  border-right: 2px solid #0A0A0A;
 }
 .knitting:last-child {
-  border-right: max(2.64px, 0.2604166667vw) solid #555555;
+  border-right: max(2.64px, 0.2604166667vw) solid #0A0A0A;
 }
 .knitting .row {
   display: flex;
 }
 .knitting .row.whole_white > div {
   background: #FAFAFA;
-  border: 0.5px solid #555555;
+  border: 0.5px solid #0A0A0A;
 }
 .knitting .row.whole_black > div {
-  background: #555555;
+  background: #0A0A0A;
   border: 0.5px solid #FAFAFA;
 }
 .knitting .row > div {
   width: 2px;
   height: 2px;
-  border: 0.5px solid #555555;
+  border: 0.5px solid #0A0A0A;
 }
 .knitting .row > div.white {
   background-color: #FAFAFA;
-  border: 0.5px solid #555555;
+  border: 0.5px solid #0A0A0A;
 }
 .knitting .row > div.black {
-  background-color: #555555;
+  background-color: #0A0A0A;
   border: 0.5px solid #FAFAFA;
 }
 
-.folding #base-content {
+.folding-type-01 .tabs {
+  position: fixed;
+  top: 0;
+  right: max(26.4px, 2.6041666667vw);
+  z-index: 1;
+  width: max(84.48px, 8.3333333333vw);
+  padding: max(5.28px, 0.5208333333vw) max(7.92px, 0.78125vw);
+  background-color: #CD1818;
+}
+.folding-type-01 .tabs li {
+  position: relative;
+  min-width: max(31.68px, 3.125vw);
+  margin-bottom: max(5.28px, 0.5208333333vw);
+}
+.folding-type-01 .tabs li::before {
+  display: none;
+  content: "";
+  position: absolute;
+  right: calc(max(10.56px, 1.0416666667vw) * -1);
+  top: 50%;
+  transform: translateY(-50%);
+  width: max(7.92px, 0.78125vw);
+  height: max(7.92px, 0.78125vw);
+  border-radius: 50%;
+  background-color: #0A0A0A;
+}
+.folding-type-01 .tabs li:last-child {
+  margin-bottom: 0;
+}
+.folding-type-01 .tabs li:not(.active):hover a {
+  opacity: 0.5;
+}
+.folding-type-01 .tabs li.active::before {
+  display: block;
+}
+.folding-type-01 .tabs li.active a {
+  opacity: 1;
+  color: #0A0A0A;
+}
+.folding-type-01 .tabs a {
+  font-size: max(10.56px, 1.0416666667vw);
+  font-weight: 700;
+  color: #FAFAFA;
+  opacity: 0.25;
+}
+.folding-type-01 #base-content {
   display: none;
 }
-.folding .screen {
+.folding-type-01 .screen {
   position: fixed;
   top: 0;
   left: 0;
@@ -177,33 +222,33 @@ body {
   height: 100vh;
   pointer-events: none;
 }
-.folding .wrapper-3d {
+.folding-type-01 .wrapper-3d {
   position: relative;
   perspective: max(165px, 16.2760416667vw);
   transform-style: preserve-3d;
 }
-.folding .fold {
+.folding-type-01 .fold {
   overflow: hidden;
   width: 100vw;
   height: 90vh;
   will-change: transform;
 }
-.folding .fold-size-fix {
+.folding-type-01 .fold-size-fix {
   transform-origin: center center;
   width: 100%;
   height: 100%;
 }
-.folding .fold-scroller {
+.folding-type-01 .fold-scroller {
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 100%;
 }
-.folding .fold-content {
+.folding-type-01 .fold-content {
   pointer-events: all;
   width: 100%;
 }
-.folding .fold-before {
+.folding-type-01 .fold-before {
   position: absolute;
   top: 0;
   right: 0;
@@ -212,17 +257,17 @@ body {
   transform-origin: bottom center;
   transform: translateZ(0px) translate3d(0, -90vh, 0) rotateX(-120deg) scale3d(1, 1.002004008, 1);
 }
-.folding .fold-before .fold-size-fix {
+.folding-type-01 .fold-before .fold-size-fix {
   transform-origin: bottom center;
 }
-.folding .fold-before .fold-scroller {
+.folding-type-01 .fold-before .fold-scroller {
   transform: translateY(100%);
 }
-.folding .fold-center {
+.folding-type-01 .fold-center {
   transform-origin: center center;
   transform: translateZ(0px) translate3d(0, 0, 0) rotateX(0) scale3d(1, 1.002004008, 1);
 }
-.folding .fold-after {
+.folding-type-01 .fold-after {
   position: absolute;
   top: 0;
   right: 0;
@@ -231,16 +276,16 @@ body {
   transform-origin: top center;
   transform: translateZ(0px) translate3d(0, 90vh, 0) rotateX(120deg) scale3d(1, 1.002004008, 1);
 }
-.folding .fold-after .fold-size-fix {
+.folding-type-01 .fold-after .fold-size-fix {
   transform-origin: top center;
 }
-.folding .fold-after .fold-scroller {
+.folding-type-01 .fold-after .fold-scroller {
   transform: translateY(-100%);
 }
-.folding .text-item {
+.folding-type-01 .text-item {
   backface-visibility: hidden;
 }
-.folding .text-item p {
-  font-size: max(31.68px, 3.125vw);
+.folding-type-01 .text-item p {
+  font-size: max(63.36px, 6.25vw);
   font-weight: 900;
 }
