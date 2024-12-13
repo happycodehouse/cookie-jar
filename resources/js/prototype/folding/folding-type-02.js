@@ -1,13 +1,15 @@
 (function () {
-    const wrapper = document.getElementById("fold-effect");
-    const folds = Array.from(document.getElementsByClassName("fold"));
-    const baseContent = document.getElementById("base-content");
+    const wrapper = document.getElementById("fold-effect-horizontal");
+    const folds = Array.from(document.getElementsByClassName("fold-horizontal"));
+    const baseContent = document.getElementById("base-content-horizontal");
+
+    // console.log(wrapper, folds, baseContent);
 
     let state = {
         disposed: false,
         targetScroll: 0,
         scroll: 0
-    };
+    }
 
     function lerp(current, target, speed = 0.1, limit = 0.001) {
         let change = (target - current) * speed;
@@ -15,12 +17,13 @@
         if (Math.abs(change) < limit) {
             change = target - current;
         }
-
         return change;
     }
 
+    let scaleFix = 0.992;
+
     class FoldedDom {
-        constructor(wrapper, folds = null) {
+        constructor(wrapper, folds = null, scrollers = null) {
             this.wrapper = wrapper;
             this.folds = folds;
             this.scrollers = [];
@@ -28,6 +31,7 @@
 
         setContent(baseContent, createScrollers = true) {
             const folds = this.folds;
+
             if (!folds) return;
 
             let scrollers = [];
@@ -35,9 +39,9 @@
             for (let i = 0; i < folds.length; i++) {
                 const fold = folds[i];
                 const copyContent = baseContent.cloneNode(true);
-                copyContent.id = "";
-
                 let scroller;
+
+                copyContent.id = "";
 
                 if (createScrollers) {
                     let sizeFixEle = document.createElement("div");
@@ -51,6 +55,7 @@
                 } else {
                     scroller = this.scrollers[i];
                 }
+
                 scroller.append(copyContent);
                 scrollers[i] = scroller;
             }
@@ -64,24 +69,27 @@
             for (let i = 0; i < folds.length; i++) {
                 const scroller = scrollers[i];
 
-                if (scroller && scroller.children.length > 0) {
-                    scroller.children[0].style.transform = `translateX(${scroll}px)`;
-                }
+                // Scroller fixed so its aligned
+                // scroller.style.transform = `translateY(${100 * -i}%)`;
+                // And the content is the one that scrolls
+
+                scroller.children[0].style.transform = `translateX(${scroll}px)`;
             }
         }
     }
 
-    let insideFold = new FoldedDom(wrapper, folds);
-    insideFold.setContent(baseContent);
+    let insideFold;
 
     const mainFold = folds[folds.length - 1];
 
     let tick = () => {
         if (state.disposed) return;
 
-        state.targetScroll = -(
-            document.documentElement.scrollLeft || document.body.scrollLeft
-        );
+        // Calculate the scroll based of how much the content is outside the mainFold
+
+        // state.targetScroll = -(
+        //   document.documentElement.scrollLeft || document.body.scrollLeft
+        // );
 
         state.targetScroll = Math.max(
             Math.min(0, state.targetScroll),
@@ -93,12 +101,13 @@
         insideFold.updateStyles(state.scroll);
 
         requestAnimationFrame(tick);
-    };
+    }
 
+    /* ATTACH SCROLL EVENT */
     let lastClientX = null;
     let isDown = false;
 
-    let onDown = ev => {
+    let onDown = event => {
         console.log(
             Math.max(
                 state.targetScroll,
@@ -114,49 +123,50 @@
         isDown = true;
     }
 
-    let onUp = ev => {
+    let onUp = event => {
         isDown = false;
     }
 
     window.addEventListener("mousedown", onDown);
     window.addEventListener("mouseup", onUp);
-    window.addEventListener("mouseout", ev => {
-        var from = ev.relatedTarget || ev.toElement;
-
+    window.addEventListener("mouseout", event => {
+        var from = event.relatedTarget || event.toElement;
         if (!from || from.nodeName == "HTML") {
+            // stop your drag event here
+            // for now we can just use an alert
             isDown = false;
         }
+    });
+
+    window.addEventListener("mousemove", event => {
+        if (lastClientX && isDown) {
+            state.targetScroll += event.clientX - lastClientX;
+        }
+
+        lastClientX = event.clientX;
+
+        // console.log("is mousemove?");
     });
 
     window.addEventListener("touchstart", onDown);
     window.addEventListener("touchend", onUp);
     window.addEventListener("touchcancel", onUp);
 
-    window.addEventListener("mousemove", ev => {
-        if (lastClientX && isDown) {
-            state.targetScroll += ev.clientX - lastClientX;
-        }
-
-        lastClientX = ev.clientX;
-        // console.log(lastClientX);
-    });
-
-    window.addEventListener("touchmove", ev => {
-        let touch = ev.touches[0];
+    window.addEventListener("touchmove", event => {
+        let touch = event.touches[0];
 
         if (lastClientX && isDown) {
-            state.targetScroll += ev.clientX - lastClientX;
+            state.targetScroll += event.clientX - lastClientX;
         }
 
-        lastClientX = ev.clientX;
+        lastClientX = event.clientX;
     });
 
-    window.addEventListener("wheel", ev => {
-        state.targetScroll += -Math.sign(ev.deltaY) * 30;
+    window.addEventListener("wheel", event => {
+        state.targetScroll += -Math.sign(event.deltaY) * 30;
     });
 
     insideFold = new FoldedDom(wrapper, folds);
     insideFold.setContent(baseContent);
-
     tick();
 })();

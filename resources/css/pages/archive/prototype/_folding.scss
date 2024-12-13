@@ -163,7 +163,7 @@
 .folding-type-02 {
     position: relative;
 
-    #base-content {
+    #base-content-horizontal {
         display: none;
     }
 
@@ -262,9 +262,5 @@
 
     .fold-before-3 .fold-scroller {
         transform: translateX(100%);
-    }
-
-    .fold-before-4 .fold-scroller {
-        transform: translateX(400%);
     }
 }

@@ -296,7 +296,7 @@ body {
 .folding-type-02 {
   position: relative;
 }
-.folding-type-02 #base-content {
+.folding-type-02 #base-content-horizontal {
   display: none;
 }
 .folding-type-02 .wrapper-3d {
@@ -379,7 +379,4 @@ body {
 }
 .folding-type-02 .fold-before-3 .fold-scroller {
   transform: translateX(100%);
-}
-.folding-type-02 .fold-before-4 .fold-scroller {
-  transform: translateX(400%);
 }
