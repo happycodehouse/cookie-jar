@@ -29,6 +29,14 @@
         <img src="/resources/images/run.jpg" alt="">
         <img src="/resources/images/run.jpg" alt="">
         <img src="/resources/images/run.jpg" alt="">
+        <img src="/resources/images/run.jpg" alt="">
+        <img src="/resources/images/run.jpg" alt="">
+        <img src="/resources/images/run.jpg" alt="">
+        <img src="/resources/images/run.jpg" alt="">
+        <img src="/resources/images/run.jpg" alt="">
+        <img src="/resources/images/run.jpg" alt="">
+        <img src="/resources/images/run.jpg" alt="">
+        <img src="/resources/images/run.jpg" alt="">
     </div>
     <div class="screen" id="fold-effect">
         <div class="wrapper-3d">
@@ -138,6 +146,70 @@
             requestAnimationFrame(tick);
         };
 
+        let lastClientX = null;
+        let isDown = false;
+
+        let onDown = ev => {
+            console.log(
+                Math.max(
+                    state.targetScroll,
+                    -insideFold.scrollers[0].children[0].clientWidth + mainFold.clientWidth
+                )
+            );
+
+            console.log(
+                "s",
+                -insideFold.scrollers[0].children[0].clientWidth + mainFold.clientWidth
+            );
+
+            isDown = true;
+        }
+
+        let onUp = ev => {
+            isDown = false;
+        }
+
+        window.addEventListener("mousedown", onDown);
+        window.addEventListener("mouseup", onUp);
+        window.addEventListener("mouseout", ev => {
+            var from = ev.relatedTarget || ev.toElement;
+
+            if (!from || from.nodeName == "HTML") {
+                isDown = false;
+            }
+        });
+
+        window.addEventListener("touchstart", onDown);
+        window.addEventListener("touchend", onUp);
+        window.addEventListener("touchcancel", onUp);
+
+        window.addEventListener("mousemove", ev => {
+            if (lastClientX && isDown) {
+                state.targetScroll += ev.clientX - lastClientX;
+            }
+
+            lastClientX = ev.clientX;
+            // console.log(lastClientX);
+        });
+
+        window.addEventListener("touchmove", ev => {
+            let touch = ev.touches[0];
+
+            if (lastClientX && isDown) {
+                state.targetScroll += ev.clientX - lastClientX;
+            }
+
+            lastClientX = ev.clientX;
+        });
+
+        window.addEventListener("wheel", ev => {
+            state.targetScroll += -Math.sign(ev.deltaY) * 30;
+        });
+
+        insideFold = new FoldedDom(wrapper, folds);
+        insideFold.setContent(baseContent);
+
+        tick();
     })();
 
 
