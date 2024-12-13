@@ -163,6 +163,17 @@
 .folding-type-02 {
     position: relative;
 
+    .cursor_area {
+        position: fixed;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1000;
+        width: 100%;
+        height: 70vh;
+        cursor: grab;
+    }
+
     #base-content-horizontal {
         display: none;
     }

@@ -296,6 +296,16 @@ body {
 .folding-type-02 {
   position: relative;
 }
+.folding-type-02 .cursor_area {
+  position: fixed;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+  width: 100%;
+  height: 70vh;
+  cursor: grab;
+}
 .folding-type-02 #base-content-horizontal {
   display: none;
 }
