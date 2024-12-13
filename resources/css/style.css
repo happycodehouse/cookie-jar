@@ -88,6 +88,11 @@ body {
   background-color: #FAFAFA;
 }
 
+.archive .intro h3 {
+  font-size: max(84.48px, 8.3333333333vw);
+  font-weight: 900;
+}
+
 /* Layout */
 .rolling_banner {
   overflow-x: hidden;
@@ -163,6 +168,7 @@ body {
   border: 0.5px solid #FAFAFA;
 }
 
+/* Archive */
 .folding .tabs {
   position: fixed;
   top: 0;
@@ -389,4 +395,8 @@ body {
 }
 .folding-type-02 .fold-before-3 .fold-scroller {
   transform: translateX(100%);
+}
+
+#folding-effect-index .sec1 {
+  height: 100vh;
 }

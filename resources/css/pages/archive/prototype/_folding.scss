@@ -275,3 +275,11 @@
         transform: translateX(100%);
     }
 }
+
+#folding-effect-index {
+    .sec {
+        &1 {
+            height: 100vh;
+        }
+    }
+}

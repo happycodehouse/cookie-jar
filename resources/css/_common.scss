@@ -11,3 +11,12 @@ body {
     background-color: $bodyBgColor;
 }
 
+.archive {
+    .intro {
+        h3 {
+            font-size: to_vw(128);
+            font-weight: 900;
+        }
+    }
+}
+
