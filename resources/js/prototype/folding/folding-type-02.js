@@ -121,10 +121,12 @@
         );
 
         isDown = true;
+        lastClientX = event.touches[0].clientX;
     }
 
     let onUp = event => {
         isDown = false;
+        lastClientX = null;
     }
 
     window.addEventListener("mousedown", onDown);
@@ -153,14 +155,14 @@
     window.addEventListener("touchcancel", onUp);
 
     window.addEventListener("touchmove", event => {
-        let touch = event.touches[0];
-
-        if (lastClientX && isDown) {
-            state.targetScroll += event.clientX - lastClientX;
+        if (isDown && event.touches.length > 0) {
+            let touch = event.touches[0]; // 첫 번째 터치 포인트
+            if (lastClientX !== null) {
+                state.targetScroll += touch.clientX - lastClientX;
+            }
+            lastClientX = touch.clientX; // clientX를 touch.clientX로 변경
         }
-
-        lastClientX = event.clientX;
-    });
+    }, { passive: false });
 
     window.addEventListener("wheel", event => {
         state.targetScroll += -Math.sign(event.deltaY) * 30;
