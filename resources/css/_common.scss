@@ -13,9 +13,17 @@ body {
 
 .archive {
     .intro {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         h3 {
             font-size: to_vw(128);
             font-weight: 900;
+
+            &+p {
+                text-align: right;
+                margin-top: to_vw(50);
+            }
         }
     }
 }
