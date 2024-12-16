@@ -1,14 +1,19 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const inner = document.getElementById("fold-effect-lyrics");
+(function () {
+    const stickySec2 = document.getElementById("stickySec2");
+    const display = document.getElementById("fold-effect-lyrics");
     const lyrics = Array.from(document.getElementsByClassName("lyrics"));
+    const lyricsContent = Array.from(document.getElementsByClassName("lyrics_content"))
     const originContentLyrics = document.getElementById("origin-content-lyrics");
-
-    const secLyrics = document.getElementsByClassName("sec2");
-    const displayLyrics = document.getElementsByClassName("display");
 
     let scaleFix = 0.992;
 
-    function lerp(current, target, speed= 0.1, limit= 0.001) {
+    let state = {
+        disposed: false,
+        targetScroll: 0,
+        scroll: 0
+    }
+
+    function lerp(current, target, speed= 0.05, limit= 0.001) {
         let change = (target - current) * speed;
 
         if (Math.abs(change) < limit) {
@@ -23,6 +28,7 @@ document.addEventListener("DOMContentLoaded", function() {
             this.wrapper = wrapper;
             this.folds = folds;
             this.scrollers = [];
+            this.copyContents = [];
         }
 
         setContent(originContent, createScrollers = true) {
@@ -35,6 +41,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 const fold = folds[i];
                 const copyContent = originContent.cloneNode(true);
                 copyContent.id = "";
+                this.copyContents.push(copyContent);
                 let scroller;
 
                 if (createScrollers) {
@@ -70,30 +77,43 @@ document.addEventListener("DOMContentLoaded", function() {
                 scroller.children[0].style.transform = `translateY(${scroll}px)`;
             }
         }
+
+        resetCopyContentsTransform() {
+            this.copyContents.forEach(content => {
+                content.style.transform = ""; // 스타일 리셋
+            });
+        }
     }
 
+    let animationFrameId;
     let insideLyrics;
+    const centerFold = lyrics[Math.floor(lyrics.length / 2)];
 
     let tickLyrics = () => {
         if (state.disposed) return;
 
         // Calculate the scroll based on how much the content is outside the centerFold
-        document.body.style.height = insideFold.scrollers[0].children[0].clientHeight - centerFold.clientHeight + window.innerHeight + "px";
+        document.body.style.height = insideLyrics.scrollers[0].children[0].clientHeight - centerFold.clientHeight + window.innerHeight + stickySec2.clientHeight + "px";
 
         state.targetScroll = -(
-            document.documentElement.scrollTop || document.body.scrollTop
+            document.documentElement.scrollTop - stickySec2.clientHeight || document.body.scrollTop - window.innerHeight - stickySec2.clientHeight
         );
 
-        state.scroll += lerp(state.scroll, state.targetScroll, 0.1, 0.0001);
+        state.scroll += lerp(state.scroll, state.targetScroll, 0.05, 0.0001);
 
-        insideFold.updateStyles(state.scroll);
+        insideLyrics.updateStyles(state.scroll);
         // setScrollStyles(state.currentY);
 
-        requestAnimationFrame(tickLyrics);
+        animationFrameId = requestAnimationFrame(tickLyrics);
+
+        console.log(state.targetScroll)
+        console.log(document.documentElement.scrollTop + window.innerHeight)
+
     }
 
-    insideLyrics = new FoldedDom(inner, lyrics);
+    insideLyrics = new FoldedDom(display, lyrics);
     insideLyrics.setContent(originContentLyrics);
+    tickLyrics();
 
     let insideAlbums;
 
@@ -103,17 +123,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const effectLyrics = gsap.timeline({
         scrollTrigger: {
-            id: "effectLyrics",
-            trigger: secLyrics[0],
-            start: "top 1",
-            end: "bottom bottom",
+            id: "sticky",
+            trigger: stickySec2,
+            start: "top center",
+            end: "bottom center",
             markers: false,
             onEnter: () => {
-                displayLyrics[0].classList.add("fixed");
+                stickySec2.classList.add("fixed");
             },
             onLeaveBack: () => {
-                displayLyrics[0].classList.remove("fixed");
+                stickySec2.classList.remove("fixed");
             }
         }
     });
-});
+}());
