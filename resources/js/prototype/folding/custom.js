@@ -14,7 +14,7 @@
         scroll: 0
     }
 
-    function lerp(current, target, speed= 0.05, limit= 0.001) {
+    function lerp(current, target, speed= 0.1, limit= 0.001) {
         let change = (target - current) * speed;
 
         if (Math.abs(change) < limit) {
@@ -96,7 +96,7 @@
         );
 
 
-        state.scroll += lerp(state.scroll, state.targetScroll, 0.05, 0.0001);
+        state.scroll += lerp(state.scroll, state.targetScroll, 0.1, 0.0001);
 
         insideLyrics.updateStyles(state.scroll);
 
