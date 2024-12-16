@@ -429,9 +429,6 @@ body {
 #folding-effect-index .sec2 .sticky.fixed {
   position: fixed;
 }
-#folding-effect-index .sec2 .sticky.absolute {
-  position: absolute;
-}
 #folding-effect-index .sec2 .lyrics_content p {
   font-size: max(55.44px, 5.46875vw);
   font-weight: 800;
@@ -507,4 +504,8 @@ body {
 }
 #folding-effect-index .sec2 .display .lyrics_bottom .fold-scroller {
   transform: translateY(-100%);
+}
+#folding-effect-index .sec3 {
+  border: 3px solid red;
+  height: 100vh;
 }

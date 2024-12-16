@@ -303,10 +303,6 @@
                 &.fixed {
                     position: fixed;
                 }
-
-                &.absolute {
-                    position: absolute;
-                }
             }
 
             .lyrics_content {
@@ -401,6 +397,11 @@
                     }
                 }
             }
+        }
+
+        &3 {
+            border: 3px solid red;
+            height: 100vh;
         }
     }
 }

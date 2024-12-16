@@ -1,4 +1,5 @@
 (function () {
+    const sec2 = document.getElementById("sec2");
     const stickySec2 = document.getElementById("stickySec2");
     const display = document.getElementById("fold-effect-lyrics");
     const lyrics = Array.from(document.getElementsByClassName("lyrics"));
@@ -70,17 +71,13 @@
             for (let i = 0; i < folds.length; i++) {
                 const scroller = scrollers[i];
 
-                // Scroller fixed so its aligned
-                // scroller.style.transform = `translateY(${100 * -i}%)`;
-                // And the content is the one that scrolls
-
                 scroller.children[0].style.transform = `translateY(${scroll}px)`;
             }
         }
 
         resetCopyContentsTransform() {
             this.copyContents.forEach(content => {
-                content.style.transform = ""; // 스타일 리셋
+                content.style.transform = "";
             });
         }
     }
@@ -92,23 +89,18 @@
     let tickLyrics = () => {
         if (state.disposed) return;
 
-        // Calculate the scroll based on how much the content is outside the centerFold
-        document.body.style.height = insideLyrics.scrollers[0].children[0].clientHeight - centerFold.clientHeight + window.innerHeight + stickySec2.clientHeight + "px";
+        sec2.style.height = insideLyrics.scrollers[0].children[0].clientHeight - centerFold.clientHeight + window.innerHeight + "px";
 
         state.targetScroll = -(
             document.documentElement.scrollTop - stickySec2.clientHeight || document.body.scrollTop - window.innerHeight - stickySec2.clientHeight
         );
 
+
         state.scroll += lerp(state.scroll, state.targetScroll, 0.05, 0.0001);
 
         insideLyrics.updateStyles(state.scroll);
-        // setScrollStyles(state.currentY);
 
         animationFrameId = requestAnimationFrame(tickLyrics);
-
-        console.log(state.targetScroll)
-        console.log(document.documentElement.scrollTop + window.innerHeight)
-
     }
 
     insideLyrics = new FoldedDom(display, lyrics);
@@ -125,15 +117,27 @@
         scrollTrigger: {
             id: "sticky",
             trigger: stickySec2,
-            start: "top center",
-            end: "bottom center",
-            markers: false,
+            start: "top top",
+            end: "top top",
+            markers: true,
             onEnter: () => {
                 stickySec2.classList.add("fixed");
             },
             onLeaveBack: () => {
                 stickySec2.classList.remove("fixed");
+                cancelAnimationFrame(animationFrameId);
+                sec2.style.height = "";
+                console.log("leaveBack")
+            },
+            onLeave: () => {
+                console.log("leave")
             }
+        }
+    });
+
+    const effectAlbums = gsap.timeline({
+        scrollTrigger: {
+
         }
     });
 }());
