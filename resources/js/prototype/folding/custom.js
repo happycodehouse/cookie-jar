@@ -1,10 +1,10 @@
 (function () {
-    const sec2 = document.getElementById("sec2");
-    const stickySec2 = document.getElementById("stickySec2");
-    const display = document.getElementById("fold-effect-lyrics");
-    const lyrics = Array.from(document.getElementsByClassName("lyrics"));
-    const lyricsContent = Array.from(document.getElementsByClassName("lyrics_content"))
-    const originContentLyrics = document.getElementById("origin-content-lyrics");
+    const secPlot = document.getElementById("secPlot");
+    const stickyPlot = document.getElementById("stickyPlot");
+    const display = document.getElementById("foldEffectPlot");
+    const plot = Array.from(document.getElementsByClassName("plot"));
+    const contentPlot = Array.from(document.getElementsByClassName("content_plot"))
+    const originContentPlot = document.getElementById("originContentPlot");
 
     let scaleFix = 0.992;
 
@@ -14,7 +14,7 @@
         scroll: 0
     }
 
-    function lerp(current, target, speed= 0.1, limit= 0.001) {
+    function lerp(current, target, speed = 0.1, limit = 0.001) {
         let change = (target - current) * speed;
 
         if (Math.abs(change) < limit) {
@@ -46,7 +46,7 @@
                 let scroller;
 
                 if (createScrollers) {
-                    let sizeFixEle =  document.createElement("div");
+                    let sizeFixEle = document.createElement("div");
                     sizeFixEle.classList.add("fold-size-fix");
                     // sizeFixEle.style.transform = `scaleY(${scaleFix})`;
 
@@ -84,15 +84,15 @@
 
     let animationFrameId;
     let insideLyrics;
-    const centerFold = lyrics[Math.floor(lyrics.length / 2)];
+    const centerFold = plot[Math.floor(plot.length / 2)];
 
     let tickLyrics = () => {
         if (state.disposed) return;
 
-        sec2.style.height = insideLyrics.scrollers[0].children[0].clientHeight - centerFold.clientHeight + window.innerHeight + "px";
+        secPlot.style.height = insideLyrics.scrollers[0].children[0].clientHeight - centerFold.clientHeight + window.innerHeight + "px";
 
         state.targetScroll = -(
-            document.documentElement.scrollTop - stickySec2.clientHeight || document.body.scrollTop - window.innerHeight - stickySec2.clientHeight
+            document.documentElement.scrollTop - stickyPlot.clientHeight || document.body.scrollTop - window.innerHeight - stickyPlot.clientHeight
         );
 
 
@@ -103,8 +103,8 @@
         animationFrameId = requestAnimationFrame(tickLyrics);
     }
 
-    insideLyrics = new FoldedDom(display, lyrics);
-    insideLyrics.setContent(originContentLyrics);
+    insideLyrics = new FoldedDom(display, plot);
+    insideLyrics.setContent(originContentPlot);
     tickLyrics();
 
     let insideAlbums;
@@ -113,31 +113,57 @@
 
     }
 
-    const effectLyrics = gsap.timeline({
+    const effectPlot = gsap.timeline({
         scrollTrigger: {
-            id: "sticky",
-            trigger: stickySec2,
+            id: "effectPlot",
             start: "top top",
-            end: "top top",
+            end: `${secPlot.clientHeight}`,
             markers: true,
             onEnter: () => {
-                stickySec2.classList.add("fixed");
-            },
-            onLeaveBack: () => {
-                stickySec2.classList.remove("fixed");
-                cancelAnimationFrame(animationFrameId);
-                sec2.style.height = "";
-                console.log("leaveBack")
+                stickyPlot.classList.add("fixed");
             },
             onLeave: () => {
-                console.log("leave")
+                console.log("onLeave");
+            },
+            onLeaveBack: () => {
+                console.log("onLeaveBack");
             }
         }
     });
 
-    const effectAlbums = gsap.timeline({
-        scrollTrigger: {
+    const secCharacter = document.getElementById("secCharacter");
 
+    const effectCharacter = gsap.timeline({
+        scrollTrigger: {
+            id: "effectCharacter",
+            trigger: secCharacter,
+            start: "top 1",
+            end: "bottom bottom",
+            scrub: 2,
+            markers: true,
+            onEnter: () => {
+                console.log("onEnter");
+            },
+            onLeaveBack: () => {
+                characterTrigger.classList.remove("hidden");
+            }
         }
+    }).to(".black_cd", {
+        duration: 0.75,
+        bottom: "-150%",
+        transform: "scale(1)",
+        onReverseComplete: () => {
+            console.log("Aaa")
+        }
+    });
+
+    const characterTrigger = document.getElementById("characterTrigger");
+
+    characterTrigger.addEventListener("click", function () {
+        gsap.to(".black_cd", {
+            duration: 0.75,
+            transform: "scale(2)",
+        });
+        characterTrigger.classList.add("hidden");
     });
 }());

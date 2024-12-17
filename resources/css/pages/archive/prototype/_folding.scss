@@ -1,4 +1,3 @@
-
 .folding {
     .tabs {
         position: fixed;
@@ -277,23 +276,37 @@
 }
 
 #folding-effect-index {
+    overflow-x: hidden;
 
-    #origin-content-lyrics {
+    #originContentPlot {
         display: none;
     }
 
     .sec {
         &1 {
-            height: 100vh;
             overflow: hidden;
+            height: 100vh;
+            padding: 0 $horizontal-padding;
+
+            &.intro {
+                span {
+                    font-size: to_vw(124);
+                    font-weight: 100;
+                }
+
+                h3 {
+                    font-size: to_vw(248);
+                    font-weight: 900;
+                }
+
+                p {
+                    font-size: to_vw(48);
+                    font-weight: 500;
+                }
+            }
         }
 
         &2 {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
-
             .sticky {
                 top: 0;
                 left: 0;
@@ -305,15 +318,23 @@
                 }
             }
 
-            .lyrics_content {
-                p {
-                    font-size: to_vw(84);
-                    font-weight: 800;
-                    line-height: 1.25;
+            .content_plot {
+                padding: $horizontal-padding;
 
-                    b {
-                        font-weight: 300;
-                    }
+                b {
+                    display: block;
+                    margin-bottom: to_vw(48);
+                    font-size: to_vw(128);
+                    font-weight: 700;
+                    line-height: 1.25;
+                    opacity: 0.8;
+                }
+
+                p {
+                    font-size: to_vw(48);
+                    font-weight: 500;
+                    line-height: 1.25;
+                    opacity: 0.6;
                 }
             }
 
@@ -331,7 +352,7 @@
                     transform-style: preserve-3d;
                 }
 
-                .lyrics {
+                .plot {
                     overflow: hidden;
                     width: 100vw;
                     height: 90vh;
@@ -351,12 +372,12 @@
                     height: 100%;
                 }
 
-                .lyrics_content {
+                .content_plot {
                     pointer-events: all;
                     width: 100%;
                 }
 
-                .lyrics_top {
+                .plot_top {
                     position: absolute;
                     top: 0;
                     right: 0;
@@ -374,12 +395,12 @@
                     }
                 }
 
-                .lyrics_center {
+                .plot_center {
                     transform-origin: center center;
                     transform: translateZ(0px) translate3d(0, 0, 0) rotateX(0) scale3d(1, 1.002004008016032, 1);
                 }
 
-                .lyrics_bottom {
+                .plot_bottom {
                     position: absolute;
                     top: 0;
                     right: 0;
@@ -401,6 +422,71 @@
 
         &3 {
             height: 100vh;
+            overflow: hidden;
+
+            .inner {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                width: 100%;
+                height: 100%;
+
+                .black_cd {
+                    position: absolute;
+                    bottom: -200%;
+                    left: 0;
+                    transform: scale(0.5);
+                    width: 100vw;
+                    height: 100vw;
+                    border-radius: 50%;
+                    background-color: #EFEFEF;
+                }
+            }
+
+            .title_wrap {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                z-index: 1;
+                width: 100%;
+                height: 100%;
+
+                i {
+                    font-size: to_vw(16);
+                    color: $gray;
+                }
+
+                a {
+                    position: relative;
+                    animation: upAndDown 0.8s linear infinite alternate;
+                    font-size: to_vw(16);
+                    font-weight: 800;
+                    letter-spacing: to_vw(16);
+                    opacity: 0.2;
+
+                    &.hidden {
+                        opacity: 0;
+                        visibility: hidden;
+                    }
+                }
+            }
         }
+    }
+}
+
+@keyframes upAndDown {
+    0% {
+        transform : translateY(4px);
+    }
+    50% {
+        transform : translateY(0);
+    }
+    100% {
+        transform : translateY(4px);
     }
 }
