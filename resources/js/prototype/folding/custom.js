@@ -1,10 +1,14 @@
 (function () {
     const secPlot = document.getElementById("secPlot");
     const stickyPlot = document.getElementById("stickyPlot");
-    const display = document.getElementById("foldEffectPlot");
-    const plot = Array.from(document.getElementsByClassName("plot"));
-    const contentPlot = Array.from(document.getElementsByClassName("content_plot"))
+    const displayPlot = document.getElementById("foldEffectPlot");
+    const plots = Array.from(document.getElementsByClassName("plot"));
     const originContentPlot = document.getElementById("originContentPlot");
+
+    const secCharacter = document.getElementById("secCharacter");
+    const displayCharacter = document.getElementById("foldEffectCharacter");
+    const characters = Array.from(document.getElementsByClassName("character"));
+    const originContentCharacter = document.getElementById("originContentCharacter");
 
     let scaleFix = 0.992;
 
@@ -71,7 +75,12 @@
             for (let i = 0; i < folds.length; i++) {
                 const scroller = scrollers[i];
 
-                scroller.children[0].style.transform = `translateY(${scroll}px)`;
+                if (folds === plots) {
+                    scroller.children[0].style.transform = `translateY(${scroll}px)`;
+                } else if (folds === characters) {
+                    scroller.children[0].style.transform = `translateX(${scroll}px)`;
+                }
+
             }
         }
 
@@ -83,13 +92,13 @@
     }
 
     let animationFrameId;
-    let insideLyrics;
-    const centerFold = plot[Math.floor(plot.length / 2)];
+    let insidePlot;
+    const centerFold = plots[Math.floor(plots.length / 2)];
 
-    let tickLyrics = () => {
+    let tickPlots = () => {
         if (state.disposed) return;
 
-        secPlot.style.height = insideLyrics.scrollers[0].children[0].clientHeight - centerFold.clientHeight + window.innerHeight + "px";
+        secPlot.style.height = insidePlot.scrollers[0].children[0].clientHeight - centerFold.clientHeight + window.innerHeight + "px";
 
         state.targetScroll = -(
             document.documentElement.scrollTop - stickyPlot.clientHeight || document.body.scrollTop - window.innerHeight - stickyPlot.clientHeight
@@ -98,18 +107,22 @@
 
         state.scroll += lerp(state.scroll, state.targetScroll, 0.1, 0.0001);
 
-        insideLyrics.updateStyles(state.scroll);
+        insidePlot.updateStyles(state.scroll);
 
-        animationFrameId = requestAnimationFrame(tickLyrics);
+        animationFrameId = requestAnimationFrame(tickPlots);
     }
 
-    insideLyrics = new FoldedDom(display, plot);
-    insideLyrics.setContent(originContentPlot);
-    tickLyrics();
+    insidePlot = new FoldedDom(displayPlot, plots);
+    insidePlot.setContent(originContentPlot);
+    tickPlots();
 
-    let insideAlbums;
+    let insideCharacters;
 
-    let tickAlbums = () => {
+    insideCharacters = new FoldedDom(displayCharacter, characters);
+    insideCharacters.setContent(originContentCharacter);
+
+
+    let tickCharacters = () => {
 
     }
 
@@ -118,7 +131,7 @@
             id: "effectPlot",
             start: "top top",
             end: `${secPlot.clientHeight}`,
-            markers: true,
+            markers: false,
             onEnter: () => {
                 stickyPlot.classList.add("fixed");
             },
@@ -131,25 +144,24 @@
         }
     });
 
-    const secCharacter = document.getElementById("secCharacter");
-
     const effectCharacter = gsap.timeline({
         scrollTrigger: {
             id: "effectCharacter",
             trigger: secCharacter,
-            start: "top 1",
-            end: "bottom bottom",
-            scrub: 2,
-            markers: true,
+            start: "1 1",
+            end: "1 bottom",
+            scrub: 1,
+            markers: false,
             onEnter: () => {
                 console.log("onEnter");
             },
             onLeaveBack: () => {
-                characterTrigger.classList.remove("hidden");
+                triggerCharacter.classList.remove("hidden");
             }
         }
-    }).to(".black_cd", {
-        duration: 0.75,
+    }).to(".circle", {
+        delay: 0.3,
+        duration: 1,
         bottom: "-150%",
         transform: "scale(1)",
         onReverseComplete: () => {
@@ -157,13 +169,13 @@
         }
     });
 
-    const characterTrigger = document.getElementById("characterTrigger");
+    const triggerCharacter = document.getElementById("triggerCharacter");
 
-    characterTrigger.addEventListener("click", function () {
-        gsap.to(".black_cd", {
+    triggerCharacter.addEventListener("click", function () {
+        gsap.to(".circle", {
             duration: 0.75,
             transform: "scale(2)",
         });
-        characterTrigger.classList.add("hidden");
+        triggerCharacter.classList.add("hidden");
     });
 }());

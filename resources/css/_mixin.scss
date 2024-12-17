@@ -47,6 +47,8 @@ $breakpoints: (
 $horizontal-padding: 12px;
 $vertical-padding: 12px;
 
+$transitionSpeed: 0.5s;
+
 @mixin media($from: false, $until: false, $and: false, $or: false, $etc: false, $media-type: all) {
     /// ❓ 선택값
     /// $from, $until : $breakpoints or number
