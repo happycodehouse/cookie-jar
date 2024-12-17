@@ -12,7 +12,19 @@
 
     let scaleFix = 0.992;
 
-    let state = {
+    // let state = {
+    //     disposed: false,
+    //     targetScroll: 0,
+    //     scroll: 0
+    // }
+
+    let statePlots = {
+        disposed: false,
+        targetScroll: 0,
+        scroll: 0
+    }
+
+    let stateCharacters = {
         disposed: false,
         targetScroll: 0,
         scroll: 0
@@ -96,18 +108,18 @@
     const centerFold = plots[Math.floor(plots.length / 2)];
 
     let tickPlots = () => {
-        if (state.disposed) return;
+        if (statePlots.disposed) return;
 
         secPlot.style.height = insidePlot.scrollers[0].children[0].clientHeight - centerFold.clientHeight + window.innerHeight + "px";
 
-        state.targetScroll = -(
+        statePlots.targetScroll = -(
             document.documentElement.scrollTop - stickyPlot.clientHeight || document.body.scrollTop - window.innerHeight - stickyPlot.clientHeight
         );
 
 
-        state.scroll += lerp(state.scroll, state.targetScroll, 0.1, 0.0001);
+        statePlots.scroll += lerp(statePlots.scroll, statePlots.targetScroll, 0.1, 0.0001);
 
-        insidePlot.updateStyles(state.scroll);
+        insidePlot.updateStyles(statePlots.scroll);
 
         animationFrameId = requestAnimationFrame(tickPlots);
     }
@@ -117,14 +129,24 @@
     tickPlots();
 
     let insideCharacters;
+    const mainFold = characters[characters.length - 1];
+
+    let tickCharacters = () => {
+        if (stateCharacters.disposed) return;
+
+        stateCharacters.targetScroll = Math.max(
+            -insideCharacters.scrollers[0].children[0].clientWidth + mainFold.clientWidth
+        );
+
+        stateCharacters.scroll += lerp(stateCharacters.scroll, stateCharacters.targetScroll, 0.1, 0.0001);
+
+        insideCharacters.updateStyles(stateCharacters.scroll);
+
+        requestAnimationFrame(tickCharacters);
+    }
 
     insideCharacters = new FoldedDom(displayCharacter, characters);
     insideCharacters.setContent(originContentCharacter);
-
-
-    let tickCharacters = () => {
-
-    }
 
     const effectPlot = gsap.timeline({
         scrollTrigger: {
@@ -136,17 +158,19 @@
                 stickyPlot.classList.add("fixed");
             },
             onLeave: () => {
-                console.log("onLeave");
+                triggerCharacter.classList.remove("hidden");
+
+                gsap.to(".display_character", {
+                    alpha: 0,
+                    visibility: "hidden",
+                });
             },
-            onLeaveBack: () => {
-                console.log("onLeaveBack");
-            }
         }
     });
 
-    const effectCharacter = gsap.timeline({
+    const sec3 = gsap.timeline({
         scrollTrigger: {
-            id: "effectCharacter",
+            id: "sec3",
             trigger: secCharacter,
             start: "1 1",
             end: "1 bottom",
@@ -156,16 +180,14 @@
                 console.log("onEnter");
             },
             onLeaveBack: () => {
-                triggerCharacter.classList.remove("hidden");
             }
         }
     }).to(".circle", {
-        delay: 0.3,
+        delay: 0.5,
         duration: 1,
         bottom: "-150%",
         transform: "scale(1)",
         onReverseComplete: () => {
-            console.log("Aaa")
         }
     });
 
@@ -176,6 +198,30 @@
             duration: 0.75,
             transform: "scale(2)",
         });
+
         triggerCharacter.classList.add("hidden");
+
+        gsap.to(".display_character", {
+            delay: 0.5,
+            duration: 0.75,
+            alpha: 1,
+            visibility: "visible",
+        });
+    });
+
+    const effectCharacter = gsap.timeline({
+        scrollTrigger: {
+            id: "effectCharacter",
+            trigger: displayCharacter,
+            start: "1 1",
+            end: "1 bottom",
+            markers: true,
+            onEnter: () => {
+
+            },
+            onLeave: () => {
+                console.log("aaaaaaaaaaaaaaaaaaaaaaaaaa")
+            }
+        }
     });
 }());
