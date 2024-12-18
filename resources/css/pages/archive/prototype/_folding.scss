@@ -56,6 +56,7 @@
         }
     }
 
+
     .screen {
         display: flex;
         align-items: center;
@@ -438,9 +439,9 @@
                 .circle {
                     position: absolute;
                     bottom: -200%;
-                    left: 0;
-                    transform: scale(0.5);
-                    width: 100vw;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 125vw;
                     height: 100vw;
                     border-radius: 50%;
                     background-color: #EFEFEF;
@@ -477,6 +478,19 @@
                         visibility: hidden;
                     }
                 }
+            }
+
+            .drag_character {
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                z-index: 10000;
+                width: 100%;
+                height: 70vh;
+                cursor: grab;
+                opacity: 0;
+                visibility: hidden;
             }
 
             .content_character {
@@ -583,6 +597,7 @@
                 position: absolute;
                 top: 0;
                 left: 0;
+                z-index: 1000;
                 width: 100%;
                 height: 100vh;
                 background-color: #EFEFEF;

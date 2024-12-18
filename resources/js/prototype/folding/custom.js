@@ -9,14 +9,9 @@
     const displayCharacter = document.getElementById("foldEffectCharacter");
     const characters = Array.from(document.getElementsByClassName("character"));
     const originContentCharacter = document.getElementById("originContentCharacter");
+    const dragCharacter = document.getElementById("dragCharacter");
 
     let scaleFix = 0.992;
-
-    // let state = {
-    //     disposed: false,
-    //     targetScroll: 0,
-    //     scroll: 0
-    // }
 
     let statePlots = {
         disposed: false,
@@ -64,10 +59,10 @@
                 if (createScrollers) {
                     let sizeFixEle = document.createElement("div");
                     sizeFixEle.classList.add("fold-size-fix");
-                    // sizeFixEle.style.transform = `scaleY(${scaleFix})`;
 
                     scroller = document.createElement("div");
                     scroller.classList.add("fold-scroller");
+
                     sizeFixEle.append(scroller);
                     fold.append(sizeFixEle);
                 } else {
@@ -80,17 +75,21 @@
             this.scrollers = scrollers;
         }
 
-        updateStyles(scroll, skewAmp, rotationAmp) {
+        updateStyles(scroll) {
             const folds = this.folds;
             const scrollers = this.scrollers;
 
             for (let i = 0; i < folds.length; i++) {
                 const scroller = scrollers[i];
 
-                if (folds === plots) {
+                if (this.folds === plots) {
+                    // 플롯의 경우
                     scroller.children[0].style.transform = `translateY(${scroll}px)`;
-                } else if (folds === characters) {
+                    console.log(scroll);
+                } else if (this.folds === characters) {
+                    // 캐릭터의 경우
                     scroller.children[0].style.transform = `translateX(${scroll}px)`;
+                    console.log(scroll);
                 }
 
             }
@@ -122,31 +121,53 @@
         insidePlot.updateStyles(statePlots.scroll);
 
         animationFrameId = requestAnimationFrame(tickPlots);
+
+        console.log("bbbb")
+
     }
 
     insidePlot = new FoldedDom(displayPlot, plots);
     insidePlot.setContent(originContentPlot);
-    tickPlots();
 
-    let insideCharacters;
+    let insideCharacter;
     const mainFold = characters[characters.length - 1];
 
     let tickCharacters = () => {
         if (stateCharacters.disposed) return;
 
+        // Calculate targetScroll
         stateCharacters.targetScroll = Math.max(
-            -insideCharacters.scrollers[0].children[0].clientWidth + mainFold.clientWidth
+            Math.min(0, stateCharacters.targetScroll),
+            -insideCharacter.scrollers[0].children[0].clientWidth + mainFold.clientWidth,
+            stateCharacters.targetScroll // 이전에 설정된 targetScroll을 유지
         );
 
         stateCharacters.scroll += lerp(stateCharacters.scroll, stateCharacters.targetScroll, 0.1, 0.0001);
 
-        insideCharacters.updateStyles(stateCharacters.scroll);
+        insideCharacter.updateStyles(stateCharacters.scroll);
 
         requestAnimationFrame(tickCharacters);
+        console.log("Aaaa")
     }
 
-    insideCharacters = new FoldedDom(displayCharacter, characters);
-    insideCharacters.setContent(originContentCharacter);
+    let lastClientX = null;
+    let isDown = false;
+    let onDown = event => {
+        isDown = true;
+        console.log("onDown ?");
+    }
+    let onUp = event => {
+        isDown = false;
+        lastClientX = null;
+        console.log("onDown ?");
+
+    }
+
+    insideCharacter = new FoldedDom(displayCharacter, characters);
+    insideCharacter.setContent(originContentCharacter);
+    tickCharacters();
+
+    console.log(stateCharacters.scroll);
 
     const effectPlot = gsap.timeline({
         scrollTrigger: {
@@ -156,15 +177,28 @@
             markers: false,
             onEnter: () => {
                 stickyPlot.classList.add("fixed");
+                tickPlots();
             },
             onLeave: () => {
-                triggerCharacter.classList.remove("hidden");
-
-                gsap.to(".display_character", {
-                    alpha: 0,
-                    visibility: "hidden",
+                gsap.to(".circle", {
+                    bottom: "-200%"
+                })
+                gsap.to(".circle", {
+                    transform: "translateX(-50%) scale(1)",
                 });
+                gsap.to("#triggerCharacter", {
+                    alpha: 0.2
+                });
+                gsap.to(".drag_character, .display_character", {
+                    alpha: 0,
+                    visibility: "hidden"
+                });
+
+                lastClientX = null;
+                stateCharacters.scroll = 0;
+                stateCharacters.targetScroll = 0;
             },
+
         }
     });
 
@@ -172,56 +206,49 @@
         scrollTrigger: {
             id: "sec3",
             trigger: secCharacter,
-            start: "1 1",
-            end: "1 bottom",
-            scrub: 1,
+            start: "top top",
+            end: "bottom bottom",
             markers: false,
             onEnter: () => {
-                console.log("onEnter");
+                gsap.to(".circle", {
+                    duration: 0.75,
+                    bottom: "-150%"
+                });
+                gsap.to(".circle", {
+                    delay: 0.75,
+                    duration: 0.75,
+                    transform: "translateX(-50%) scale(2)",
+                });
+                gsap.to("#triggerCharacter", {
+                    delay: 1.45,
+                    duration: 0.75,
+                    alpha: 0
+                });
+                gsap.to(".drag_character, .display_character", {
+                    delay: 2.2,
+                    duration: 1.25,
+                    alpha: 1,
+                    visibility: "visible",
+                    onComplete: () => {
+                        // 드래그 이벤트 리스너 등록
+                        dragCharacter.addEventListener("mousedown", onDown);
+                        dragCharacter.addEventListener("mouseup", onUp);
+                        dragCharacter.addEventListener("mouseout", event => {
+                            var from = event.relatedTarget || event.toElement;
+                            if (!from || from.nodeName === "HTML") {
+                                isDown = false;
+                            }
+                        });
+                        dragCharacter.addEventListener("mousemove", event => {
+                            if (lastClientX && isDown) {
+                                stateCharacters.targetScroll += event.clientX - lastClientX;
+                                console.log("New targetScroll:", stateCharacters.targetScroll);
+                            }
+                            lastClientX = event.clientX;
+                        });
+                    }
+                });
             },
-            onLeaveBack: () => {
-            }
-        }
-    }).to(".circle", {
-        delay: 0.5,
-        duration: 1,
-        bottom: "-150%",
-        transform: "scale(1)",
-        onReverseComplete: () => {
-        }
-    });
-
-    const triggerCharacter = document.getElementById("triggerCharacter");
-
-    triggerCharacter.addEventListener("click", function () {
-        gsap.to(".circle", {
-            duration: 0.75,
-            transform: "scale(2)",
-        });
-
-        triggerCharacter.classList.add("hidden");
-
-        gsap.to(".display_character", {
-            delay: 0.5,
-            duration: 0.75,
-            alpha: 1,
-            visibility: "visible",
-        });
-    });
-
-    const effectCharacter = gsap.timeline({
-        scrollTrigger: {
-            id: "effectCharacter",
-            trigger: displayCharacter,
-            start: "1 1",
-            end: "1 bottom",
-            markers: true,
-            onEnter: () => {
-
-            },
-            onLeave: () => {
-                console.log("aaaaaaaaaaaaaaaaaaaaaaaaaa")
-            }
         }
     });
 }());
