@@ -11,8 +11,6 @@
     const originContentCharacter = document.getElementById("originContentCharacter");
     const dragCharacter = document.getElementById("dragCharacter");
 
-    let scaleFix = 0.992;
-
     let statePlots = {
         disposed: false,
         targetScroll: 0,
@@ -52,9 +50,9 @@
             for (let i = 0; i < folds.length; i++) {
                 const fold = folds[i];
                 const copyContent = originContent.cloneNode(true);
-                copyContent.id = "";
-                this.copyContents.push(copyContent);
                 let scroller;
+
+                copyContent.id = "";
 
                 if (createScrollers) {
                     let sizeFixEle = document.createElement("div");
@@ -83,22 +81,12 @@
                 const scroller = scrollers[i];
 
                 if (this.folds === plots) {
-                    // 플롯의 경우
                     scroller.children[0].style.transform = `translateY(${scroll}px)`;
-                    console.log(scroll);
                 } else if (this.folds === characters) {
-                    // 캐릭터의 경우
                     scroller.children[0].style.transform = `translateX(${scroll}px)`;
-                    console.log(scroll);
                 }
 
             }
-        }
-
-        resetCopyContentsTransform() {
-            this.copyContents.forEach(content => {
-                content.style.transform = "";
-            });
         }
     }
 
@@ -115,14 +103,11 @@
             document.documentElement.scrollTop - stickyPlot.clientHeight || document.body.scrollTop - window.innerHeight - stickyPlot.clientHeight
         );
 
-
         statePlots.scroll += lerp(statePlots.scroll, statePlots.targetScroll, 0.1, 0.0001);
 
         insidePlot.updateStyles(statePlots.scroll);
 
         animationFrameId = requestAnimationFrame(tickPlots);
-
-        console.log("bbbb")
 
     }
 
@@ -139,7 +124,7 @@
         stateCharacters.targetScroll = Math.max(
             Math.min(0, stateCharacters.targetScroll),
             -insideCharacter.scrollers[0].children[0].clientWidth + mainFold.clientWidth,
-            stateCharacters.targetScroll // 이전에 설정된 targetScroll을 유지
+            stateCharacters.targetScroll // maintain previous set targetScroll
         );
 
         stateCharacters.scroll += lerp(stateCharacters.scroll, stateCharacters.targetScroll, 0.1, 0.0001);
@@ -147,27 +132,21 @@
         insideCharacter.updateStyles(stateCharacters.scroll);
 
         requestAnimationFrame(tickCharacters);
-        console.log("Aaaa")
     }
 
     let lastClientX = null;
     let isDown = false;
     let onDown = event => {
         isDown = true;
-        console.log("onDown ?");
     }
     let onUp = event => {
         isDown = false;
         lastClientX = null;
-        console.log("onDown ?");
-
     }
 
     insideCharacter = new FoldedDom(displayCharacter, characters);
     insideCharacter.setContent(originContentCharacter);
     tickCharacters();
-
-    console.log(stateCharacters.scroll);
 
     const effectPlot = gsap.timeline({
         scrollTrigger: {
@@ -230,7 +209,6 @@
                     alpha: 1,
                     visibility: "visible",
                     onComplete: () => {
-                        // 드래그 이벤트 리스너 등록
                         dragCharacter.addEventListener("mousedown", onDown);
                         dragCharacter.addEventListener("mouseup", onUp);
                         dragCharacter.addEventListener("mouseout", event => {
@@ -242,7 +220,7 @@
                         dragCharacter.addEventListener("mousemove", event => {
                             if (lastClientX && isDown) {
                                 stateCharacters.targetScroll += event.clientX - lastClientX;
-                                console.log("New targetScroll:", stateCharacters.targetScroll);
+                                // console.log("New targetScroll:", stateCharacters.targetScroll);
                             }
                             lastClientX = event.clientX;
                         });
