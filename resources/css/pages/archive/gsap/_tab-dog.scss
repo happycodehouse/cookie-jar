@@ -1,0 +1,18 @@
+.tab-dog {
+    section {
+        padding: 0 $horizontal-padding;
+
+        &.intro {
+            height: 100vh;
+
+            p {
+                line-height: 1.5;
+            }
+
+            a {
+                font-size: to_vw(10);
+                text-decoration: underline;
+            }
+        }
+    }
+}

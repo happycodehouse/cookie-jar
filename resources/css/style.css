@@ -181,6 +181,20 @@ body {
 }
 
 /* Archive */
+.tab-dog section {
+  padding: 0 12px;
+}
+.tab-dog section.intro {
+  height: 100vh;
+}
+.tab-dog section.intro p {
+  line-height: 1.5;
+}
+.tab-dog section.intro a {
+  font-size: max(6.6px, 0.6510416667vw);
+  text-decoration: underline;
+}
+
 .folding .tabs {
   position: fixed;
   top: 0;
