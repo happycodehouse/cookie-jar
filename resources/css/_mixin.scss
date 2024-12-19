@@ -49,6 +49,8 @@ $vertical-padding: 12px;
 
 $transitionSpeed: 0.5s;
 
+$imgPath: "/resources/images/";
+
 @mixin media($from: false, $until: false, $and: false, $or: false, $etc: false, $media-type: all) {
     /// ❓ 선택값
     /// $from, $until : $breakpoints or number
@@ -161,5 +163,35 @@ $transitionSpeed: 0.5s;
             @return max(#{$min}, #{$resultVw});
         }
     }
+}
+
+/* background */
+@mixin background($img, $bgp: null, $bgr: null, $bgz: null) {
+    /// ❗ 필수값
+    /// $img : 이미지 경로 및 파일명 => 'kr/common/logo.png'
+
+    /// ❓ 선택값
+    /// 하나씩 쓸 경우엔 지시자 지정 필수 => @include background('kr/common/logo.png', $bgr: no-repeat); 👈 "$bgr"
+    /// $bgp : position, $bgr : repeat, $bgz : size
+
+    @if $bgp ==null {
+        // background position 값이 없을 때
+        background-image: url("#{$imgPath}#{$img}");
+        background-repeat: $bgr;
+    }
+
+    @else if $bgr ==null {
+        // background repeat 값이 없을 때
+        background-image: url("#{$imgPath}#{$img}");
+        background-position: $bgp;
+    }
+
+    @else {
+        // position, repeat 값이 둘 다 있을 때
+        background: url("#{$imgPath}#{$img}") $bgp $bgr;
+    }
+
+    // background size 값이 있으면 반환, 없으면 생략
+    background-size: $bgz;
 }
 

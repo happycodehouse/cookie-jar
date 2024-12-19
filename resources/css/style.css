@@ -80,6 +80,7 @@ a {
 }
 
 /* PIXEL TO VW */
+/* background */
 * {
   box-sizing: border-box;
   font-family: "Poppins", sans-serif !important;
@@ -188,11 +189,62 @@ body {
   height: 100vh;
 }
 .tab-dog section.intro p {
+  font-size: max(7.92px, 0.78125vw);
+  font-weight: 500;
   line-height: 1.5;
+  opacity: 0.5;
 }
 .tab-dog section.intro a {
   font-size: max(6.6px, 0.6510416667vw);
+  font-weight: 300;
   text-decoration: underline;
+}
+.tab-dog section.statement {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+}
+.tab-dog section.statement p {
+  margin-bottom: max(7.92px, 0.78125vw);
+  font-size: max(13.2px, 1.3020833333vw);
+  line-height: 1.2;
+}
+.tab-dog section.statement p:last-child {
+  margin-bottom: 0;
+}
+.tab-dog section.statement p.title {
+  font-size: max(18.48px, 1.8229166667vw);
+  font-weight: 700;
+}
+.tab-dog section.slogan {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.tab-dog section.slogan .inner {
+  position: relative;
+}
+.tab-dog section.slogan .mask_wrapper svg {
+  width: max(435.6px, 42.96875vw);
+  height: max(435.6px, 42.96875vw);
+}
+.tab-dog section.slogan .slogan_zone {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.tab-dog section.slogan .slogan_zone .txt {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.tab-dog section.slogan .slogan_zone .txt span {
+  font-size: max(43.56px, 4.296875vw);
+  font-weight: 900;
 }
 
 .folding .tabs {

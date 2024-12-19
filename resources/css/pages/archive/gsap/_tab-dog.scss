@@ -6,12 +6,74 @@
             height: 100vh;
 
             p {
+                font-size: to_vw(12);
+                font-weight: 500;
                 line-height: 1.5;
+                opacity: 0.5;
             }
 
             a {
                 font-size: to_vw(10);
+                font-weight: 300;
                 text-decoration: underline;
+            }
+        }
+
+        &.statement {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100vh;
+            p {
+                margin-bottom: to_vw(12);
+                font-size: to_vw(20);
+                line-height: 1.2;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+
+                &.title {
+                    font-size: to_vw(28);
+                    font-weight: 700;
+                }
+            }
+        }
+
+        &.slogan {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+
+            .inner {
+                position: relative;
+            }
+
+            .mask_wrapper {
+                svg {
+                    width: to_vw(660);
+                    height: to_vw(660);
+                }
+            }
+
+            .slogan_zone {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+
+                .txt {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+
+                    span {
+                        font-size: to_vw(66);
+                        font-weight: 900;
+                    }
+                }
             }
         }
     }
