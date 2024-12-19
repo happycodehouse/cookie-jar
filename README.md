@@ -1,1 +1,1 @@
-# CookieJar
+# cookie-jar
