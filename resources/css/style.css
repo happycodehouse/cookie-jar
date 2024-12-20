@@ -207,7 +207,7 @@ body {
 }
 .tab-dog section.statement .title {
   margin-bottom: max(23.76px, 2.34375vw);
-  font-size: max(31.68px, 3.125vw);
+  font-size: max(36.96px, 3.6458333333vw);
   font-weight: 800;
 }
 .tab-dog section.statement p {
@@ -267,7 +267,7 @@ body {
   z-index: 1;
   width: 100%;
   height: 100%;
-  background: url("/cookie-jar/resources/images/circle.svg") no-repeat center center;
+  background: url("/resources/images/circle.svg") no-repeat center center;
   background-color: transparent;
   background-size: cover;
   opacity: 0.8;
@@ -293,7 +293,7 @@ body {
   width: 75%;
   height: 75%;
   border-radius: 50%;
-  border: 3px dotted #0A0A0A;
+  border: max(1.98px, 0.1953125vw) dotted #0A0A0A;
 }
 .tab-dog section.slogan .line_wrapper .line::after {
   content: "";
@@ -325,11 +325,12 @@ body {
 .tab-dog section.donation {
   width: 80%;
   margin-left: auto;
+  margin-bottom: max(105.6px, 10.4166666667vw);
   text-align: right;
 }
 .tab-dog section.donation h3 {
   margin-bottom: max(23.76px, 2.34375vw);
-  font-size: max(31.68px, 3.125vw);
+  font-size: max(36.96px, 3.6458333333vw);
   font-weight: 800;
   line-height: 1.2;
 }
@@ -344,16 +345,119 @@ body {
   margin-bottom: 0;
 }
 .tab-dog section.product {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  overflow: hidden;
   height: 100vh;
-  border: 1px solid red;
+  padding: 0;
 }
 .tab-dog section.product .inner {
   position: relative;
   width: 100%;
+  height: calc(100% - max(36.96px, 3.6458333333vw));
+}
+.tab-dog section.product .circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: max(264px, 26.0416666667vw);
+  height: max(264px, 26.0416666667vw);
+  background: linear-gradient(-180deg, rgb(244, 231, 0) 0%, rgb(250, 250, 250) 100%);
+  border-radius: 50%;
+}
+.tab-dog section.product .circle::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  width: 110%;
+  height: 110%;
+}
+.tab-dog section.product .remote {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: max(15.84px, 1.5625vw);
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  width: 100%;
+  height: max(36.96px, 3.6458333333vw);
+  border-top: max(1.98px, 0.1953125vw) dotted #0A0A0A;
+}
+.tab-dog section.product .content_wrapper {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 100%;
+}
+.tab-dog section.product .content {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.tab-dog section.product .content.active {
+  top: 0;
+}
+.tab-dog section.product .content > * {
+  width: 33.333%;
+  height: 100%;
+}
+.tab-dog section.product .content .info {
+  padding-left: 12px;
+}
+.tab-dog section.product .content .info h4 {
+  margin-bottom: max(15.84px, 1.5625vw);
+  font-size: max(47.52px, 4.6875vw);
+  font-weight: 100;
+  line-height: 1.2;
+}
+.tab-dog section.product .content .object {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.tab-dog section.product .content .object img {
+  width: max(195.36px, 19.2708333333vw);
+  height: auto;
+}
+.tab-dog section.product .content .desc {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.tab-dog section.product .content .desc ul {
+  width: 70%;
+}
+.tab-dog section.product .content .desc ul li {
+  position: relative;
+  margin-bottom: max(7.92px, 0.78125vw);
+  padding-left: max(7.92px, 0.78125vw);
+  font-size: max(7.92px, 0.78125vw);
+  font-weight: 300;
+  line-height: 1.2;
+}
+.tab-dog section.product .content .desc ul li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: max(4.62px, 0.4557291667vw);
+  width: max(2.64px, 0.2604166667vw);
+  height: max(2.64px, 0.2604166667vw);
+  background-color: #0A0A0A;
+  opacity: 0.2;
 }
 @keyframes rotateToRight {
   100% {

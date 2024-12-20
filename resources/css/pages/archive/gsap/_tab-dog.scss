@@ -1,3 +1,5 @@
+$remoteHeight: 56;
+
 .tab-dog {
     section {
         padding: 0 $horizontal-padding;
@@ -27,7 +29,7 @@
 
             .title {
                 margin-bottom: to_vw(36);
-                font-size: to_vw(48);
+                font-size: to_vw(56);
                 font-weight: 800;
             }
 
@@ -98,7 +100,7 @@
                 z-index: 1;
                 width: 100%;
                 height: 100%;
-                background: url("/cookie-jar/resources/images/circle.svg") no-repeat center center;
+                background: url("/resources/images/circle.svg") no-repeat center center;
                 background-color: transparent;
                 background-size: cover;
                 opacity: 0.8;
@@ -126,7 +128,7 @@
                     width: 75%;
                     height: 75%;
                     border-radius: 50%;
-                    border: 3px dotted $mainColor;
+                    border: to_vw(3) dotted $mainColor;
 
                     &::after {
                         content: '';
@@ -165,12 +167,13 @@
         &.donation {
             width: 80%;
             margin-left: auto;
+            margin-bottom: to_vw(160);
 
             text-align: right;
 
             h3 {
                 margin-bottom: to_vw(36);
-                font-size: to_vw(48);
+                font-size: to_vw(56);
                 font-weight: 800;
                 line-height: 1.2;
             }
@@ -189,30 +192,138 @@
         }
 
         &.product {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            overflow: hidden;
             height: 100vh;
-            border: 1px solid red;
+            padding: 0;
 
             .inner {
                 position: relative;
                 width: 100%;
-                height: 100%;
+                height: calc(100% - to_vw($remoteHeight));
+            }
+
+            .circle {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: to_vw(400);
+                height: to_vw(400);
+                background: linear-gradient(-180deg, rgba(244,231,0,1) 0%, rgba(250,250,250,1) 100%);
+                border-radius: 50%;
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    z-index: 1;
+                    width: 110%;
+                    height: 110%;
+                }
+            }
+
+            .remote {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: to_vw(24);
+                position: absolute;
+                top: 100%;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: 1;
+                width: 100%;
+                height: to_vw($remoteHeight);
+                border-top: to_vw(3) dotted $mainColor;
+
+                li {
+
+                }
+
+                a {
+
+                }
             }
 
             .content_wrapper {
-
+                overflow: hidden;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
             }
 
             .content {
-                .info {}
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
 
-                .object {}
+                &.active {
+                    top: 0;
+                }
+
+                >* {
+                    width: 33.333%;
+                    height: 100%;
+                }
+
+                .info {
+                    padding-left: $horizontal-padding;
+                    h4 {
+                        margin-bottom: to_vw(24);
+                        font-size: to_vw(72);
+                        font-weight: 100;
+                        line-height: 1.2;
+                    }
+                }
+
+                .object {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    position: relative;
+                    img {
+                        width: to_vw(296);
+                        height: auto;
+                    }
+                }
 
                 .desc {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+
                     ul {
-                        li {}
+                        width: 70%;
+
+                        li {
+                            position: relative;
+                            margin-bottom: to_vw(12);
+                            padding-left: to_vw(12);
+                            font-size: to_vw(12);
+                            font-weight: 300;
+                            line-height: 1.2;
+
+                            &::before {
+                                content: '';
+                                position: absolute;
+                                left: 0;
+                                top: to_vw(7);
+                                width: to_vw(4);
+                                height: to_vw(4);
+                                background-color: $mainColor;
+                                opacity: 0.2;
+                            }
+                        }
                     }
 
                     dl {
@@ -225,14 +336,6 @@
 
                     span {}
                 }
-            }
-
-            .circle {
-
-            }
-
-            .remote {
-
             }
         }
     }
