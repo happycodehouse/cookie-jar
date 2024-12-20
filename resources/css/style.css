@@ -303,7 +303,7 @@ body {
   width: max(11.88px, 1.171875vw);
   height: max(11.88px, 1.171875vw);
   border-radius: 50%;
-  background-color: #CD1818;
+  background-color: #f4e700;
 }
 .tab-dog section.slogan .slogan_zone {
   position: absolute;
@@ -386,7 +386,45 @@ body {
   z-index: 1;
   width: 100%;
   height: max(36.96px, 3.6458333333vw);
+}
+.tab-dog section.product .remote::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   border-top: max(1.98px, 0.1953125vw) dotted #0A0A0A;
+  opacity: 0.2;
+}
+.tab-dog section.product .remote li.active a {
+  color: #f4e700;
+}
+.tab-dog section.product .remote li.active a::after {
+  opacity: 1;
+  visibility: visible;
+}
+.tab-dog section.product .remote li:hover:not(.tab-dog section.product .remote li.active) a::after {
+  opacity: 1;
+  visibility: visible;
+}
+.tab-dog section.product .remote a {
+  display: block;
+  position: relative;
+  font-weight: 700;
+  transition: opacity 0.5s;
+}
+.tab-dog section.product .remote a::after {
+  content: "";
+  position: absolute;
+  top: -70%;
+  left: calc(max(5.28px, 0.5208333333vw) * -1);
+  width: max(5.28px, 0.5208333333vw);
+  height: max(5.28px, 0.5208333333vw);
+  border-radius: max(2.64px, 0.2604166667vw);
+  background-color: #f4e700;
+  transition: inherit;
+  opacity: 0;
+  visibility: hidden;
 }
 .tab-dog section.product .content_wrapper {
   overflow: hidden;
@@ -408,6 +446,7 @@ body {
 }
 .tab-dog section.product .content.active {
   top: 0;
+  z-index: 1;
 }
 .tab-dog section.product .content > * {
   width: 33.333%;
@@ -453,12 +492,54 @@ body {
   content: "";
   position: absolute;
   left: 0;
-  top: max(4.62px, 0.4557291667vw);
+  top: max(3.3px, 0.3255208333vw);
   width: max(2.64px, 0.2604166667vw);
   height: max(2.64px, 0.2604166667vw);
   background-color: #0A0A0A;
+  border-radius: max(1.32px, 0.1302083333vw);
   opacity: 0.2;
 }
+.tab-dog section.product .content .desc dl {
+  width: 70%;
+}
+.tab-dog section.product .content .desc dl dt {
+  margin-bottom: max(15.84px, 1.5625vw);
+  font-size: max(9.24px, 0.9114583333vw);
+  font-weight: 500;
+}
+.tab-dog section.product .content .desc dl dd img {
+  width: max(31.68px, 3.125vw);
+  height: auto;
+}
+.tab-dog section.product .content .desc dl dd p {
+  margin-top: max(5.28px, 0.5208333333vw);
+  margin-bottom: max(7.92px, 0.78125vw);
+  font-size: max(7.92px, 0.78125vw);
+  font-weight: 300;
+  line-height: 1.2;
+}
+.tab-dog section.product .content .desc dl dd span {
+  width: 100%;
+}
+.tab-dog section.product .content .desc > p {
+  width: 70%;
+  margin-bottom: max(7.92px, 0.78125vw);
+  font-size: max(7.92px, 0.78125vw);
+  font-weight: 300;
+  line-height: 1.2;
+}
+.tab-dog section.product .content .desc span {
+  display: block;
+  width: 70%;
+  margin-bottom: max(2.64px, 0.2604166667vw);
+  font-size: max(6.6px, 0.6510416667vw);
+  line-height: 1.2;
+  color: #CD1818;
+}
+.tab-dog section.product .content .desc span:last-child {
+  margin-bottom: 0;
+}
+
 @keyframes rotateToRight {
   100% {
     transform: rotate(360deg);

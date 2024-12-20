@@ -1,4 +1,5 @@
 $remoteHeight: 56;
+$yellowColor: #f4e700;
 
 .tab-dog {
     section {
@@ -138,7 +139,7 @@ $remoteHeight: 56;
                         width: to_vw(18);
                         height: to_vw(18);
                         border-radius: 50%;
-                        background-color: $redColor;
+                        background-color: $yellowColor;
                     }
                 }
             }
@@ -168,7 +169,6 @@ $remoteHeight: 56;
             width: 80%;
             margin-left: auto;
             margin-bottom: to_vw(160);
-
             text-align: right;
 
             h3 {
@@ -236,14 +236,58 @@ $remoteHeight: 56;
                 z-index: 1;
                 width: 100%;
                 height: to_vw($remoteHeight);
-                border-top: to_vw(3) dotted $mainColor;
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    border-top: to_vw(3) dotted $mainColor;
+                    opacity: 0.2;
+                }
 
                 li {
+                    &.active {
+                        a {
+                            color: $yellowColor;
 
+                            &::after {
+                                opacity: 1;
+                                visibility: visible;
+                            }
+                        }
+                    }
+
+                    &:hover:not(&.active) {
+                        a {
+                            &::after {
+                                opacity: 1;
+                                visibility: visible;
+                            }
+                        }
+                    }
                 }
 
                 a {
+                    display: block;
+                    position: relative;
+                    font-weight: 700;
+                    transition: opacity 0.5s;
 
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        top: -70%;
+                        left: to_vw(-8);
+                        width: to_vw(8);
+                        height: to_vw(8);
+                        border-radius: to_vw(4);
+                        background-color: $yellowColor;
+                        transition: inherit;
+                        opacity: 0;
+                        visibility: hidden;
+                    }
                 }
             }
 
@@ -268,6 +312,7 @@ $remoteHeight: 56;
 
                 &.active {
                     top: 0;
+                    z-index: 1;
                 }
 
                 >* {
@@ -317,24 +362,65 @@ $remoteHeight: 56;
                                 content: '';
                                 position: absolute;
                                 left: 0;
-                                top: to_vw(7);
+                                top: to_vw(5);
                                 width: to_vw(4);
                                 height: to_vw(4);
                                 background-color: $mainColor;
+                                border-radius: to_vw(2);
                                 opacity: 0.2;
                             }
                         }
                     }
 
                     dl {
-                        dt {}
+                        width: 70%;
 
-                        dd {}
+                        dt {
+                            margin-bottom: to_vw(24);
+                            font-size: to_vw(14);
+                            font-weight: 500;
+                        }
+
+                        dd {
+                            img {
+                                width: to_vw(48);
+                                height: auto;
+                            }
+
+                            p {
+                                margin-top: to_vw(8);
+                                margin-bottom: to_vw(12);
+                                font-size: to_vw(12);
+                                font-weight: 300;
+                                line-height: 1.2;
+                            }
+
+                            span {
+                                width: 100%;
+                            }
+                        }
                     }
 
-                    p {}
+                    >p {
+                        width: 70%;
+                        margin-bottom: to_vw(12);
+                        font-size: to_vw(12);
+                        font-weight: 300;
+                        line-height: 1.2;
+                    }
 
-                    span {}
+                    span {
+                        display: block;
+                        width: 70%;
+                        margin-bottom: to_vw(4);
+                        font-size: to_vw(10);
+                        line-height: 1.2;
+                        color: $redColor;
+
+                        &:last-child {
+                            margin-bottom: 0;
+                        }
+                    }
                 }
             }
         }
@@ -345,7 +431,6 @@ $remoteHeight: 56;
     100% {
         transform: rotate(360deg);
     }
-
 }
 
 @keyframes rotateToLeft {
