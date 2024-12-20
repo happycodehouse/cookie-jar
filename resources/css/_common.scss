@@ -16,8 +16,9 @@ body {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        h3 {
-            font-size: to_vw(128);
+
+        h2 {
+            font-size: to_vw(148);
             font-weight: 900;
 
             &+p {

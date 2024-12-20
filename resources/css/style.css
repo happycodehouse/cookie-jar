@@ -96,11 +96,11 @@ body {
   flex-direction: column;
   justify-content: space-between;
 }
-.archive .intro h3 {
-  font-size: max(84.48px, 8.3333333333vw);
+.archive .intro h2 {
+  font-size: max(97.68px, 9.6354166667vw);
   font-weight: 900;
 }
-.archive .intro h3 + p {
+.archive .intro h2 + p {
   text-align: right;
   margin-top: max(31.68px, 3.125vw);
   margin-bottom: max(15.84px, 1.5625vw);
@@ -191,7 +191,7 @@ body {
 .tab-dog section.intro p {
   font-size: max(7.92px, 0.78125vw);
   font-weight: 500;
-  line-height: 1.5;
+  line-height: 1.2;
   opacity: 0.5;
 }
 .tab-dog section.intro a {
@@ -205,17 +205,20 @@ body {
   justify-content: center;
   height: 100vh;
 }
+.tab-dog section.statement .title {
+  margin-bottom: max(23.76px, 2.34375vw);
+  font-size: max(31.68px, 3.125vw);
+  font-weight: 800;
+}
 .tab-dog section.statement p {
   margin-bottom: max(7.92px, 0.78125vw);
   font-size: max(13.2px, 1.3020833333vw);
+  font-weight: 300;
   line-height: 1.2;
+  opacity: 0.6;
 }
 .tab-dog section.statement p:last-child {
   margin-bottom: 0;
-}
-.tab-dog section.statement p.title {
-  font-size: max(18.48px, 1.8229166667vw);
-  font-weight: 700;
 }
 .tab-dog section.slogan {
   display: flex;
@@ -254,7 +257,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: url("/cookie-jar/resources/images/puppy_03.jpg") no-repeat center center;
+  background: url("/resources/images/puppy_03.jpg") no-repeat center center;
   background-size: cover;
 }
 .tab-dog section.slogan .mask {
@@ -319,17 +322,38 @@ body {
   font-size: max(47.52px, 4.6875vw);
   font-weight: 900;
 }
+.tab-dog section.donation {
+  width: 80%;
+  margin-left: auto;
+  text-align: right;
+}
+.tab-dog section.donation h3 {
+  margin-bottom: max(23.76px, 2.34375vw);
+  font-size: max(31.68px, 3.125vw);
+  font-weight: 800;
+  line-height: 1.2;
+}
+.tab-dog section.donation p {
+  margin-bottom: max(7.92px, 0.78125vw);
+  font-size: max(13.2px, 1.3020833333vw);
+  font-weight: 300;
+  line-height: 1.2;
+  opacity: 0.6;
+}
+.tab-dog section.donation p:last-child {
+  margin-bottom: 0;
+}
 .tab-dog section.product {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   height: 100vh;
+  border: 1px solid red;
 }
 .tab-dog section.product .inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   position: relative;
   width: 100%;
   height: 100%;
-  border: 1px solid red;
 }
 @keyframes rotateToRight {
   100% {
