@@ -253,6 +253,7 @@ $yellowColor: #f4e700;
                             color: $yellowColor;
 
                             &::after {
+                                background-color: $yellowColor;
                                 opacity: 1;
                                 visibility: visible;
                             }
@@ -262,8 +263,10 @@ $yellowColor: #f4e700;
                     &:hover:not(&.active) {
                         a {
                             &::after {
+                                background-color: $mainColor;
                                 opacity: 1;
                                 visibility: visible;
+
                             }
                         }
                     }
@@ -283,7 +286,7 @@ $yellowColor: #f4e700;
                         width: to_vw(8);
                         height: to_vw(8);
                         border-radius: to_vw(4);
-                        background-color: $yellowColor;
+                        background-color: $mainColor;
                         transition: inherit;
                         opacity: 0;
                         visibility: hidden;

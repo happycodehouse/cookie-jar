@@ -400,10 +400,12 @@ body {
   color: #f4e700;
 }
 .tab-dog section.product .remote li.active a::after {
+  background-color: #f4e700;
   opacity: 1;
   visibility: visible;
 }
 .tab-dog section.product .remote li:hover:not(.tab-dog section.product .remote li.active) a::after {
+  background-color: #0A0A0A;
   opacity: 1;
   visibility: visible;
 }
@@ -421,7 +423,7 @@ body {
   width: max(5.28px, 0.5208333333vw);
   height: max(5.28px, 0.5208333333vw);
   border-radius: max(2.64px, 0.2604166667vw);
-  background-color: #f4e700;
+  background-color: #0A0A0A;
   transition: inherit;
   opacity: 0;
   visibility: hidden;
