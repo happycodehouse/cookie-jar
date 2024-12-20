@@ -319,7 +319,18 @@ body {
   font-size: max(47.52px, 4.6875vw);
   font-weight: 900;
 }
-
+.tab-dog section.product {
+  height: 100vh;
+}
+.tab-dog section.product .inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 1px solid red;
+}
 @keyframes rotateToRight {
   100% {
     transform: rotate(360deg);
