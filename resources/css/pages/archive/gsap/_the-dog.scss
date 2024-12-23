@@ -3,23 +3,10 @@ $yellowColor: #f4e700;
 
 .the-dog {
     section {
-        padding: 0 $horizontal-padding;
+        padding: 0 to_vw(12);
 
         &.intro {
             height: 100vh;
-
-            p {
-                font-size: to_vw(12);
-                font-weight: 500;
-                line-height: 1.2;
-                opacity: 0.5;
-            }
-
-            a {
-                font-size: to_vw(10);
-                font-weight: 300;
-                text-decoration: underline;
-            }
         }
 
         &.statement {
@@ -413,7 +400,7 @@ $yellowColor: #f4e700;
                 }
 
                 .info {
-                    padding-left: $horizontal-padding;
+                    padding-left: to_vw(12);
 
                     h4 {
                         margin-bottom: to_vw(24);

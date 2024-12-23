@@ -91,19 +91,70 @@ body {
   background-color: #FAFAFA;
 }
 
-.archive .intro {
+.archive.prototype .intro {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 0 max(7.92px, 0.78125vw) max(15.84px, 1.5625vw);
 }
-.archive .intro h2 {
-  font-size: max(97.68px, 9.6354166667vw);
-  font-weight: 900;
+.archive.prototype .intro span {
+  font-size: max(31.68px, 3.125vw);
+  font-weight: 100;
 }
-.archive .intro h2 + p {
+.archive.prototype .intro h2 {
+  font-size: max(36.96px, 3.6458333333vw);
+  font-weight: 400;
+}
+.archive.prototype .intro em {
+  display: block;
+  font-size: max(15.84px, 1.5625vw);
+  font-weight: 500;
+  opacity: 0.1;
+}
+.archive.prototype .intro p {
+  margin-top: auto;
   text-align: right;
-  margin-top: max(31.68px, 3.125vw);
-  margin-bottom: max(15.84px, 1.5625vw);
+  font-size: max(7.92px, 0.78125vw);
+  font-weight: 500;
+  line-height: 1.2;
+  opacity: 0.5;
+}
+.archive.prototype .intro a {
+  font-size: max(6.6px, 0.6510416667vw);
+  font-weight: 300;
+  text-decoration: underline;
+}
+.archive.gsap .intro {
+  display: flex;
+  flex-direction: column;
+  padding: 0 max(7.92px, 0.78125vw) max(15.84px, 1.5625vw);
+}
+.archive.gsap .intro > div {
+  display: flex;
+  justify-content: space-between;
+}
+.archive.gsap .intro span {
+  font-size: max(84.48px, 8.3333333333vw);
+  font-weight: 100;
+}
+.archive.gsap .intro h2 {
+  text-align: right;
+  font-size: max(42.24px, 4.1666666667vw);
+  font-weight: 500;
+  opacity: 0.05;
+}
+.archive.gsap .intro p {
+  margin-top: auto;
+  text-align: right;
+  font-size: max(7.92px, 0.78125vw);
+  font-weight: 500;
+  line-height: 1.2;
+  opacity: 0.5;
+}
+.archive.gsap .intro a {
+  font-size: max(6.6px, 0.6510416667vw);
+  font-weight: 300;
+  text-decoration: underline;
 }
 
 /* Layout */
@@ -182,22 +233,14 @@ body {
 }
 
 /* Archive */
+.gsap.horizontal-scroll .intro {
+  height: 100vh;
+}
 .the-dog section {
-  padding: 0 12px;
+  padding: 0 max(7.92px, 0.78125vw);
 }
 .the-dog section.intro {
   height: 100vh;
-}
-.the-dog section.intro p {
-  font-size: max(7.92px, 0.78125vw);
-  font-weight: 500;
-  line-height: 1.2;
-  opacity: 0.5;
-}
-.the-dog section.intro a {
-  font-size: max(6.6px, 0.6510416667vw);
-  font-weight: 300;
-  text-decoration: underline;
 }
 .the-dog section.statement {
   display: flex;
@@ -522,7 +565,7 @@ body {
   height: auto;
 }
 .the-dog section.product .content .info {
-  padding-left: 12px;
+  padding-left: max(7.92px, 0.78125vw);
 }
 .the-dog section.product .content .info h4 {
   margin-bottom: max(15.84px, 1.5625vw);
@@ -847,20 +890,12 @@ body {
 #folding-effect-index .sec1 {
   overflow: hidden;
   height: 100vh;
-  padding: 0 12px;
+  background-color: #FAFAFA;
 }
-#folding-effect-index .sec1.intro span {
-  font-size: max(81.84px, 8.0729166667vw);
-  font-weight: 100;
-}
-#folding-effect-index .sec1.intro h3 {
-  font-size: max(163.68px, 16.1458333333vw);
-  font-weight: 900;
-}
-#folding-effect-index .sec1.intro p {
-  font-size: max(31.68px, 3.125vw);
-  font-weight: 500;
-  opacity: 0.1;
+#folding-effect-index .sec1.intro .inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 #folding-effect-index .sec2 .sticky {
   top: 0;
@@ -872,19 +907,18 @@ body {
   position: fixed;
 }
 #folding-effect-index .sec2 .content_plot {
-  padding: 12px;
+  padding: max(7.92px, 0.78125vw);
 }
 #folding-effect-index .sec2 .content_plot b {
   display: block;
   margin-bottom: max(31.68px, 3.125vw);
-  font-size: max(84.48px, 8.3333333333vw);
-  font-weight: 700;
+  font-size: max(47.52px, 4.6875vw);
+  font-weight: 500;
   line-height: 1.25;
-  opacity: 0.8;
 }
 #folding-effect-index .sec2 .content_plot p {
   font-size: max(31.68px, 3.125vw);
-  font-weight: 500;
+  font-weight: 200;
   line-height: 1.25;
   opacity: 0.6;
 }
@@ -977,7 +1011,7 @@ body {
   width: 125vw;
   height: 100vw;
   border-radius: 50%;
-  background-color: #EFEFEF;
+  background-color: #0A0A0A;
 }
 #folding-effect-index .sec3 .title_wrap {
   display: flex;
@@ -1001,7 +1035,7 @@ body {
   font-size: max(10.56px, 1.0416666667vw);
   font-weight: 800;
   letter-spacing: max(10.56px, 1.0416666667vw);
-  opacity: 0.2;
+  color: #FFFFFF;
 }
 #folding-effect-index .sec3 .title_wrap a.hidden {
   opacity: 0;
@@ -1174,4 +1208,7 @@ body {
   100% {
     transform: translateY(4px);
   }
+}
+.slider.type-01 .intro {
+  height: 100vh;
 }

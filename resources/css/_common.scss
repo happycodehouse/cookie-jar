@@ -12,21 +12,87 @@ body {
 }
 
 .archive {
-    .intro {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+    &.prototype {
+        .intro {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 0 to_vw(12) to_vw(24);
 
-        h2 {
-            font-size: to_vw(148);
-            font-weight: 900;
+            span {
+                font-size: to_vw(48);
+                font-weight: 100;
+            }
 
-            &+p {
+            h2 {
+                font-size: to_vw(56);
+                font-weight: 400;
+            }
+
+            em {
+                display: block;
+                font-size: to_vw(24);
+                font-weight: 500;
+                opacity: 0.1;
+            }
+
+            p {
+                margin-top: auto;
                 text-align: right;
-                margin-top: to_vw(48);
-                margin-bottom: to_vw(24);
+                font-size: to_vw(12);
+                font-weight: 500;
+                line-height: 1.2;
+                opacity: 0.5;
+            }
+
+            a {
+                font-size: to_vw(10);
+                font-weight: 300;
+                text-decoration: underline;
+            }
+        }
+    }
+
+    &.gsap {
+        .intro {
+            display: flex;
+            flex-direction: column;
+            padding: 0 to_vw(12) to_vw(24);
+
+            >div {
+                display: flex;
+                justify-content: space-between;
+            }
+
+            span {
+                font-size: to_vw(128);
+                font-weight: 100;
+            }
+
+            h2 {
+                text-align: right;
+                font-size: to_vw(64);
+                font-weight: 500;
+                opacity: 0.05;
+            }
+
+            p {
+                margin-top: auto;
+                text-align: right;
+                font-size: to_vw(12);
+                font-weight: 500;
+                line-height: 1.2;
+                opacity: 0.5;
+            }
+
+            a {
+                font-size: to_vw(10);
+                font-weight: 300;
+                text-decoration: underline;
             }
         }
     }
 }
+
+
 

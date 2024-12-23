@@ -151,7 +151,7 @@
     const effectPlot = gsap.timeline({
         scrollTrigger: {
             id: "effectPlot",
-            start: "top top",
+            start: "top bottom",
             end: `${secPlot.clientHeight}`,
             markers: false,
             onEnter: () => {
@@ -166,7 +166,7 @@
                     transform: "translateX(-50%) scale(1)",
                 });
                 gsap.to("#triggerCharacter", {
-                    alpha: 0.2
+                    alpha: 1
                 });
                 gsap.to(".drag_character, .display_character", {
                     alpha: 0,
