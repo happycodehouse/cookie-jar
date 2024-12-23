@@ -182,45 +182,45 @@ body {
 }
 
 /* Archive */
-.tab-dog section {
+.the-dog section {
   padding: 0 12px;
 }
-.tab-dog section.intro {
+.the-dog section.intro {
   height: 100vh;
 }
-.tab-dog section.intro p {
+.the-dog section.intro p {
   font-size: max(7.92px, 0.78125vw);
   font-weight: 500;
   line-height: 1.2;
   opacity: 0.5;
 }
-.tab-dog section.intro a {
+.the-dog section.intro a {
   font-size: max(6.6px, 0.6510416667vw);
   font-weight: 300;
   text-decoration: underline;
 }
-.tab-dog section.statement {
+.the-dog section.statement {
   display: flex;
   flex-direction: column;
   justify-content: center;
   height: 100vh;
 }
-.tab-dog section.statement .title {
+.the-dog section.statement .title {
   margin-bottom: max(23.76px, 2.34375vw);
   font-size: max(36.96px, 3.6458333333vw);
   font-weight: 800;
 }
-.tab-dog section.statement p {
+.the-dog section.statement p {
   margin-bottom: max(7.92px, 0.78125vw);
   font-size: max(13.2px, 1.3020833333vw);
   font-weight: 300;
   line-height: 1.2;
   opacity: 0.6;
 }
-.tab-dog section.statement p:last-child {
+.the-dog section.statement p:last-child {
   margin-bottom: 0;
 }
-.tab-dog section.slogan {
+.the-dog section.slogan {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -228,7 +228,7 @@ body {
   height: 100vh;
   background-color: #fff;
 }
-.tab-dog section.slogan::before {
+.the-dog section.slogan::before {
   content: "";
   position: absolute;
   top: 0;
@@ -237,7 +237,7 @@ body {
   height: 100%;
   background-color: rgba(250, 250, 250, 0.8);
 }
-.tab-dog section.slogan .circle {
+.the-dog section.slogan .circle {
   position: relative;
   width: max(369.6px, 36.4583333333vw);
   height: max(369.6px, 36.4583333333vw);
@@ -245,13 +245,13 @@ body {
   -webkit-mask-image: -webkit-radial-gradient(white, black);
   mask-image: -webkit-radial-gradient(white, black);
 }
-.tab-dog section.slogan .bg_wrapper {
+.the-dog section.slogan .bg_wrapper {
   position: relative;
   width: 100%;
   height: 100%;
   z-index: 1;
 }
-.tab-dog section.slogan .bg_wrapper .bg {
+.the-dog section.slogan .bg_wrapper .bg {
   position: absolute;
   top: 0;
   left: 0;
@@ -260,7 +260,7 @@ body {
   background: url("/resources/images/puppy_03.jpg") no-repeat center center;
   background-size: cover;
 }
-.tab-dog section.slogan .mask {
+.the-dog section.slogan .mask {
   position: absolute;
   top: 0;
   left: 0;
@@ -274,7 +274,7 @@ body {
   transform-origin: 50% 50%;
   animation: rotateToRight 28s linear infinite;
 }
-.tab-dog section.slogan .line_wrapper {
+.the-dog section.slogan .line_wrapper {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -285,7 +285,7 @@ body {
   padding: max(59.4px, 5.859375vw);
   animation: rotateToLeft 10s linear infinite;
 }
-.tab-dog section.slogan .line_wrapper .line {
+.the-dog section.slogan .line_wrapper .line {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -295,7 +295,7 @@ body {
   border-radius: 50%;
   border: max(1.98px, 0.1953125vw) dotted #0A0A0A;
 }
-.tab-dog section.slogan .line_wrapper .line::after {
+.the-dog section.slogan .line_wrapper .line::after {
   content: "";
   position: absolute;
   top: 12.5%;
@@ -305,56 +305,56 @@ body {
   border-radius: 50%;
   background-color: #f4e700;
 }
-.tab-dog section.slogan .slogan_zone {
+.the-dog section.slogan .slogan_zone {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
 }
-.tab-dog section.slogan .slogan_zone .txt {
+.the-dog section.slogan .slogan_zone .txt {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.tab-dog section.slogan .slogan_zone .txt span {
+.the-dog section.slogan .slogan_zone .txt span {
   font-size: max(47.52px, 4.6875vw);
   font-weight: 900;
 }
-.tab-dog section.donation {
+.the-dog section.donation {
   width: 80%;
   margin-left: auto;
   margin-bottom: max(105.6px, 10.4166666667vw);
   text-align: right;
 }
-.tab-dog section.donation h3 {
+.the-dog section.donation h3 {
   margin-bottom: max(23.76px, 2.34375vw);
   font-size: max(36.96px, 3.6458333333vw);
   font-weight: 800;
   line-height: 1.2;
 }
-.tab-dog section.donation p {
+.the-dog section.donation p {
   margin-bottom: max(7.92px, 0.78125vw);
   font-size: max(13.2px, 1.3020833333vw);
   font-weight: 300;
   line-height: 1.2;
   opacity: 0.6;
 }
-.tab-dog section.donation p:last-child {
+.the-dog section.donation p:last-child {
   margin-bottom: 0;
 }
-.tab-dog section.product {
+.the-dog section.product {
   overflow: hidden;
   height: 100vh;
   padding: 0;
 }
-.tab-dog section.product .inner {
+.the-dog section.product .inner {
   position: relative;
   width: 100%;
   height: 100%;
 }
-.tab-dog section.product .circle {
+.the-dog section.product .circle {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -364,7 +364,7 @@ body {
   background: linear-gradient(-180deg, rgb(244, 231, 0) 0%, rgb(250, 250, 250) 100%);
   border-radius: 50%;
 }
-.tab-dog section.product .circle::after {
+.the-dog section.product .circle::after {
   content: "";
   position: absolute;
   top: 50%;
@@ -374,7 +374,7 @@ body {
   width: 110%;
   height: 110%;
 }
-.tab-dog section.product .remote {
+.the-dog section.product .remote {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -388,7 +388,7 @@ body {
   height: max(36.96px, 3.6458333333vw);
   background-color: transparent;
 }
-.tab-dog section.product .remote::after {
+.the-dog section.product .remote::after {
   content: "";
   position: absolute;
   top: 0;
@@ -398,26 +398,26 @@ body {
   opacity: 0.2;
   transition: opacity 0.5s;
 }
-.tab-dog section.product .remote li.active a {
+.the-dog section.product .remote li.active a {
   color: #f4e700;
 }
-.tab-dog section.product .remote li.active a::after {
+.the-dog section.product .remote li.active a::after {
   background-color: #f4e700;
   opacity: 1;
   visibility: visible;
 }
-.tab-dog section.product .remote li:hover:not(.tab-dog section.product .remote li.active) a::after {
+.the-dog section.product .remote li:hover:not(.the-dog section.product .remote li.active) a::after {
   background-color: #0A0A0A;
   opacity: 1;
   visibility: visible;
 }
-.tab-dog section.product .remote a {
+.the-dog section.product .remote a {
   display: block;
   position: relative;
   font-weight: 700;
   transition: opacity 0.5s, color 0.5s;
 }
-.tab-dog section.product .remote a::after {
+.the-dog section.product .remote a::after {
   content: "";
   position: absolute;
   top: -70%;
@@ -430,7 +430,7 @@ body {
   opacity: 0;
   visibility: hidden;
 }
-.tab-dog section.product .content_wrapper {
+.the-dog section.product .content_wrapper {
   overflow: hidden;
   position: absolute;
   top: 0;
@@ -439,7 +439,7 @@ body {
   width: 100%;
   height: 100%;
 }
-.tab-dog section.product .content {
+.the-dog section.product .content {
   position: absolute;
   top: 100%;
   left: 0;
@@ -449,23 +449,23 @@ body {
   align-items: center;
   justify-content: space-between;
 }
-.tab-dog section.product .content.active {
+.the-dog section.product .content.active {
   top: 0;
   z-index: 1;
 }
-.tab-dog section.product .content.active:nth-child(1) .bg {
+.the-dog section.product .content.active:nth-child(1) .bg {
   top: 0;
   left: 0;
   transform: scale(1);
 }
-.tab-dog section.product .content.active:nth-child(1) .bg img {
+.the-dog section.product .content.active:nth-child(1) .bg img {
   opacity: 0.5;
 }
-.tab-dog section.product .content > * {
+.the-dog section.product .content > * {
   width: 33.333%;
   height: 100%;
 }
-.tab-dog section.product .content .bg {
+.the-dog section.product .content .bg {
   position: absolute;
   top: 0;
   left: 0;
@@ -474,11 +474,11 @@ body {
   z-index: -1;
   opacity: 0.5;
 }
-.tab-dog section.product .content .bg img {
+.the-dog section.product .content .bg img {
   width: 100%;
   height: auto;
 }
-.tab-dog section.product .content:nth-child(1) .bg {
+.the-dog section.product .content:nth-child(1) .bg {
   top: 33%;
   left: 33%;
   width: 100%;
@@ -486,28 +486,28 @@ body {
   transform-origin: top left;
   background: url("/resources/images/bg_star_04.png") no-repeat fixed;
 }
-.tab-dog section.product .content:nth-child(1) .object {
+.the-dog section.product .content:nth-child(1) .object {
   transform: scale(1);
 }
-.tab-dog section.product .content:nth-child(2) .bg {
+.the-dog section.product .content:nth-child(2) .bg {
   top: 33%;
   right: 33%;
   transform-origin: top right;
   background: url("/resources/images/bg_star_03.png") no-repeat fixed;
 }
-.tab-dog section.product .content:nth-child(3) .bg {
+.the-dog section.product .content:nth-child(3) .bg {
   bottom: 33%;
   left: 33%;
   transform-origin: bottom left;
   background: url("/resources/images/bg_star_01.png") no-repeat fixed;
 }
-.tab-dog section.product .content:nth-child(4) .bg {
+.the-dog section.product .content:nth-child(4) .bg {
   bottom: 33%;
   right: 33%;
   transform-origin: bottom right;
   background: url("/resources/images/bg_star_02.png") no-repeat fixed;
 }
-.tab-dog section.product .content .object {
+.the-dog section.product .content .object {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -517,29 +517,29 @@ body {
   backface-visibility: hidden;
   will-change: transform;
 }
-.tab-dog section.product .content .object img {
+.the-dog section.product .content .object img {
   width: max(195.36px, 19.2708333333vw);
   height: auto;
 }
-.tab-dog section.product .content .info {
+.the-dog section.product .content .info {
   padding-left: 12px;
 }
-.tab-dog section.product .content .info h4 {
+.the-dog section.product .content .info h4 {
   margin-bottom: max(15.84px, 1.5625vw);
   font-size: max(47.52px, 4.6875vw);
   font-weight: 100;
   line-height: 1.2;
 }
-.tab-dog section.product .content .desc {
+.the-dog section.product .content .desc {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.tab-dog section.product .content .desc ul {
+.the-dog section.product .content .desc ul {
   width: 70%;
 }
-.tab-dog section.product .content .desc ul li {
+.the-dog section.product .content .desc ul li {
   position: relative;
   margin-bottom: max(7.92px, 0.78125vw);
   padding-left: max(7.92px, 0.78125vw);
@@ -547,7 +547,7 @@ body {
   font-weight: 300;
   line-height: 1.2;
 }
-.tab-dog section.product .content .desc ul li::before {
+.the-dog section.product .content .desc ul li::before {
   content: "";
   position: absolute;
   left: 0;
@@ -558,36 +558,36 @@ body {
   border-radius: max(1.32px, 0.1302083333vw);
   opacity: 0.2;
 }
-.tab-dog section.product .content .desc dl {
+.the-dog section.product .content .desc dl {
   width: 70%;
 }
-.tab-dog section.product .content .desc dl dt {
+.the-dog section.product .content .desc dl dt {
   margin-bottom: max(15.84px, 1.5625vw);
   font-size: max(9.24px, 0.9114583333vw);
   font-weight: 500;
 }
-.tab-dog section.product .content .desc dl dd img {
+.the-dog section.product .content .desc dl dd img {
   width: max(31.68px, 3.125vw);
   height: auto;
 }
-.tab-dog section.product .content .desc dl dd p {
+.the-dog section.product .content .desc dl dd p {
   margin-top: max(5.28px, 0.5208333333vw);
   margin-bottom: max(7.92px, 0.78125vw);
   font-size: max(7.92px, 0.78125vw);
   font-weight: 300;
   line-height: 1.2;
 }
-.tab-dog section.product .content .desc dl dd span {
+.the-dog section.product .content .desc dl dd span {
   width: 100%;
 }
-.tab-dog section.product .content .desc > p {
+.the-dog section.product .content .desc > p {
   width: 70%;
   margin-bottom: max(7.92px, 0.78125vw);
   font-size: max(7.92px, 0.78125vw);
   font-weight: 300;
   line-height: 1.2;
 }
-.tab-dog section.product .content .desc span {
+.the-dog section.product .content .desc span {
   display: block;
   width: 70%;
   margin-bottom: max(2.64px, 0.2604166667vw);
@@ -595,7 +595,7 @@ body {
   line-height: 1.2;
   color: #CD1818;
 }
-.tab-dog section.product .content .desc span:last-child {
+.the-dog section.product .content .desc span:last-child {
   margin-bottom: 0;
 }
 
