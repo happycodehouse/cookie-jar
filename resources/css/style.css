@@ -352,7 +352,7 @@ body {
 .tab-dog section.product .inner {
   position: relative;
   width: 100%;
-  height: calc(100% - max(36.96px, 3.6458333333vw));
+  height: 100%;
 }
 .tab-dog section.product .circle {
   position: absolute;
@@ -380,12 +380,13 @@ body {
   align-items: center;
   gap: max(15.84px, 1.5625vw);
   position: absolute;
-  top: 100%;
+  bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 1;
+  z-index: 2;
   width: 100%;
   height: max(36.96px, 3.6458333333vw);
+  background-color: transparent;
 }
 .tab-dog section.product .remote::after {
   content: "";
@@ -433,6 +434,7 @@ body {
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 1;
   width: 100%;
   height: 100%;
 }
@@ -453,6 +455,41 @@ body {
 .tab-dog section.product .content > * {
   width: 33.333%;
   height: 100%;
+}
+.tab-dog section.product .content .bg {
+  position: absolute;
+  width: 0;
+  height: 0;
+  z-index: -1;
+}
+.tab-dog section.product .content .bg img {
+  width: 100%;
+  height: auto;
+  opacity: 0.5;
+}
+.tab-dog section.product .content:nth-child(1) .bg {
+  top: max(31.68px, 3.125vw);
+  left: max(31.68px, 3.125vw);
+  transform-origin: top left;
+  background: url("/cookie-jar/resources/images/bg_star_04.png") no-repeat fixed;
+}
+.tab-dog section.product .content:nth-child(2) .bg {
+  top: max(31.68px, 3.125vw);
+  right: max(31.68px, 3.125vw);
+  transform-origin: top right;
+  background: url("/cookie-jar/resources/images/bg_star_03.png") no-repeat fixed;
+}
+.tab-dog section.product .content:nth-child(3) .bg {
+  bottom: max(31.68px, 3.125vw);
+  right: max(31.68px, 3.125vw);
+  transform-origin: bottom right;
+  background: url("/cookie-jar/resources/images/bg_star_02.png") no-repeat fixed;
+}
+.tab-dog section.product .content:nth-child(4) .bg {
+  bottom: max(31.68px, 3.125vw);
+  left: max(31.68px, 3.125vw);
+  transform-origin: bottom left;
+  background: url("/cookie-jar/resources/images/bg_star_01.png") no-repeat fixed;
 }
 .tab-dog section.product .content .info {
   padding-left: 12px;
