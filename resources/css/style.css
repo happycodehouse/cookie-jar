@@ -396,6 +396,7 @@ body {
   width: 100%;
   border-top: max(1.98px, 0.1953125vw) dotted #0A0A0A;
   opacity: 0.2;
+  transition: opacity 0.5s;
 }
 .tab-dog section.product .remote li.active a {
   color: #f4e700;
@@ -414,7 +415,7 @@ body {
   display: block;
   position: relative;
   font-weight: 700;
-  transition: opacity 0.5s;
+  transition: opacity 0.5s, color 0.5s;
 }
 .tab-dog section.product .remote a::after {
   content: "";
@@ -452,12 +453,22 @@ body {
   top: 0;
   z-index: 1;
 }
+.tab-dog section.product .content.active:nth-child(1) .bg {
+  top: 0;
+  left: 0;
+  transform: scale(1);
+}
+.tab-dog section.product .content.active:nth-child(1) .bg img {
+  opacity: 0.5;
+}
 .tab-dog section.product .content > * {
   width: 33.333%;
   height: 100%;
 }
 .tab-dog section.product .content .bg {
   position: absolute;
+  top: 0;
+  left: 0;
   width: 0;
   height: 0;
   z-index: -1;
@@ -468,28 +479,47 @@ body {
   opacity: 0.5;
 }
 .tab-dog section.product .content:nth-child(1) .bg {
-  top: max(31.68px, 3.125vw);
-  left: max(31.68px, 3.125vw);
+  top: 33%;
+  left: 33%;
+  width: 100%;
+  height: 100%;
   transform-origin: top left;
   background: url("/cookie-jar/resources/images/bg_star_04.png") no-repeat fixed;
 }
+.tab-dog section.product .content:nth-child(1) .object {
+  transform: scale(1);
+}
 .tab-dog section.product .content:nth-child(2) .bg {
-  top: max(31.68px, 3.125vw);
-  right: max(31.68px, 3.125vw);
+  top: 33%;
+  right: 33%;
   transform-origin: top right;
   background: url("/cookie-jar/resources/images/bg_star_03.png") no-repeat fixed;
 }
 .tab-dog section.product .content:nth-child(3) .bg {
-  bottom: max(31.68px, 3.125vw);
-  right: max(31.68px, 3.125vw);
+  bottom: 33%;
+  left: 33%;
+  transform-origin: bottom left;
+  background: url("/cookie-jar/resources/images/bg_star_01.png") no-repeat fixed;
+}
+.tab-dog section.product .content:nth-child(4) .bg {
+  bottom: 33%;
+  right: 33%;
   transform-origin: bottom right;
   background: url("/cookie-jar/resources/images/bg_star_02.png") no-repeat fixed;
 }
-.tab-dog section.product .content:nth-child(4) .bg {
-  bottom: max(31.68px, 3.125vw);
-  left: max(31.68px, 3.125vw);
-  transform-origin: bottom left;
-  background: url("/cookie-jar/resources/images/bg_star_01.png") no-repeat fixed;
+.tab-dog section.product .content .object {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transform-origin: center center;
+  transform: scale(0);
+  backface-visibility: hidden;
+  will-change: transform;
+}
+.tab-dog section.product .content .object img {
+  width: max(195.36px, 19.2708333333vw);
+  height: auto;
 }
 .tab-dog section.product .content .info {
   padding-left: 12px;
@@ -499,16 +529,6 @@ body {
   font-size: max(47.52px, 4.6875vw);
   font-weight: 100;
   line-height: 1.2;
-}
-.tab-dog section.product .content .object {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-}
-.tab-dog section.product .content .object img {
-  width: max(195.36px, 19.2708333333vw);
-  height: auto;
 }
 .tab-dog section.product .content .desc {
   display: flex;
