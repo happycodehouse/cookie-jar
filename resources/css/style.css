@@ -314,7 +314,6 @@ body {
   width: 100%;
   height: 100%;
   background: url("/resources/images/circle.svg") no-repeat center center;
-  background-color: transparent;
   background-size: cover;
   opacity: 0.8;
   transform-origin: 50% 50%;
@@ -1224,6 +1223,38 @@ body {
   width: 100%;
   height: 100%;
 }
+.slider.type-01 .main_content .swiper-slide .bg_thumb {
+  display: flex;
+  gap: max(7.92px, 0.78125vw);
+  position: absolute;
+  right: 10%;
+  bottom: 10%;
+  z-index: 1;
+}
+.slider.type-01 .main_content .swiper-slide .bg_thumb li {
+  overflow: hidden;
+  position: relative;
+  width: max(47.52px, 4.6875vw);
+  height: max(47.52px, 4.6875vw);
+  opacity: 0.7;
+}
+.slider.type-01 .main_content .swiper-slide .bg_thumb li.active {
+  opacity: 1;
+}
+.slider.type-01 .main_content .swiper-slide .bg_thumb li a {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.slider.type-01 .main_content .swiper-slide .bg_thumb li a img {
+  display: block;
+  object-fit: cover;
+  object-position: 50% 50%;
+  width: 100%;
+  height: 100%;
+}
 .slider.type-01 .main_content .swiper-slide .bg {
   position: absolute;
   top: 0;
@@ -1278,5 +1309,7 @@ body {
   z-index: 10;
   width: fit-content;
   height: fit-content;
-  border: 1px solid red;
+}
+.slider.type-01 .main_content .swiper-pagination-custom .swiper-pagination-bullet {
+  color: #FAFAFA;
 }
